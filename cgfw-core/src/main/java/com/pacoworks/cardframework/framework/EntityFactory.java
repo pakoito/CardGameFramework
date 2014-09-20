@@ -9,8 +9,11 @@ import com.pacoworks.cardframework.systems.BasePhaseSystem;
 
 public class EntityFactory {
     public static Entity createGame(World world, BasePhaseSystem phaseSystems) {
-        return new EntityBuilder(world).with(new GamePhases(phaseSystems))
-                .group(Constants.Groups.FRAMEWORK).tag(Constants.Tags.GAME).build();
+        EntityBuilder entityBuilder = new EntityBuilder(world);
+        entityBuilder.with(new GamePhases(phaseSystems));
+        entityBuilder.group(Constants.Groups.FRAMEWORK);
+        entityBuilder.tag(Constants.Tags.GAME);
+        return entityBuilder.build();
     }
     /*
      * public static Entity createHero(World world, String sprite, FloatPair startPosition,

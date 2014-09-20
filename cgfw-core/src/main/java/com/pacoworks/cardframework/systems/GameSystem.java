@@ -12,6 +12,8 @@ import com.pacoworks.cardframework.custom.ConcurrentStack;
  * Created by Paco on 20/09/2014.
  */
 public abstract class GameSystem extends EntityProcessingSystem {
+    private static final Aspect ASPECT = Aspect.getAspectForAll(GamePhases.class);
+
     @Mapper
     ComponentMapper<GamePhases> gamePhasesComponentMapper;
 
@@ -20,12 +22,13 @@ public abstract class GameSystem extends EntityProcessingSystem {
      * against entities.
      */
     public GameSystem() {
-        super(Aspect.getAspectForAll(GamePhases.class));
+        super(ASPECT);
     }
 
     @Override
     protected void process(Entity e) {
-        ConcurrentStack<BasePhaseSystem> phaseSystems = gamePhasesComponentMapper.get(e).getPhaseSystems();
+        GamePhases phases = gamePhasesComponentMapper.get(e);
+        ConcurrentStack<BasePhaseSystem> phaseSystems = phases.getPhaseSystems();
         BasePhaseSystem system = phaseSystems.pop();
         system.process();
         BasePhaseSystem nextPhase = system.pushSystem();
