@@ -2,12 +2,12 @@
 package com.pacoworks.cardframework.systems;
 
 import com.artemis.Aspect;
-import com.artemis.EntitySystem;
+import com.artemis.systems.EntityProcessingSystem;
 
 /**
  * Created by Paco on 20/09/2014.
  */
-public abstract class BasePhaseSystem extends EntitySystem implements IPhaseSystem {
+public abstract class BasePhaseSystem extends EntityProcessingSystem implements IPhaseSystem {
     /**
      * Creates an entity system that uses the specified aspect as a matcher against entities.
      *

@@ -5,7 +5,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.artemis.Aspect;
 import com.artemis.Entity;
-import com.artemis.utils.ImmutableBag;
 import com.pacoworks.cardframework.framework.CardgameFramework;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.GameSystem;
@@ -17,14 +16,13 @@ import com.pacoworks.cardframework.systems.IGameSystemListener;
 public class SystemTest {
     private static final BasePhaseSystem basePhaseSystem = new BasePhaseSystem(Aspect.getEmpty()) {
         @Override
-        protected void processEntities(ImmutableBag<Entity> entities) {
-            // NUFFIN HAPPENING
-            System.out.println("BOP");
+        public BasePhaseSystem pushSystem() {
+            return this;
         }
 
         @Override
-        public BasePhaseSystem pushSystem() {
-            return this;
+        protected void process(Entity e) {
+            //
         }
     };
 
