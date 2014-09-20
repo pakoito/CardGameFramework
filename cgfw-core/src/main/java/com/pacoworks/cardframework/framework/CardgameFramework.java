@@ -43,8 +43,6 @@ public class CardgameFramework {
         if (!isStarted) {
             throw new IllegalStateException("Framework not started.");
         }
-        // world.delta += System.nanoTime();
-        gameSystem.process();
         world.process();
     }
 

@@ -8,6 +8,7 @@ import com.artemis.utils.ImmutableBag;
 import com.pacoworks.cardframework.framework.CardgameFramework;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.GameSystem;
+import com.pacoworks.cardframework.systems.IGameSystemListener;
 
 /**
  * Created by Paco on 20/09/2014.
@@ -29,19 +30,19 @@ public class SystemTest {
     public static void main(String[] args) {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         final CardgameFramework cardgameFramework = new CardgameFramework();
-        cardgameFramework.start(new GameSystem() {
+        cardgameFramework.start(new GameSystem(new IGameSystemListener() {
             @Override
-            protected boolean isVictoryCondition() {
+            public boolean isVictoryCondition() {
                 System.out.println("Bup");
-                return cardgameFramework.getWorld().delta > 500;
+                return Math.random() > 0.02d;
             }
 
             @Override
-            protected void triggerVictory() {
+            public void triggerVictory() {
                 System.out.println("VICTORY!");
                 cardgameFramework.end();
             }
-        }, basePhaseSystem);
+        }), basePhaseSystem);
         executorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
