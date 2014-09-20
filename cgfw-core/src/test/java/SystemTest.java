@@ -1,6 +1,7 @@
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.artemis.Aspect;
 import com.artemis.Entity;
@@ -28,6 +29,7 @@ public class SystemTest {
     };
 
     public static void main(String[] args) {
+        final AtomicBoolean loop = new AtomicBoolean(true);
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         final CardgameFramework cardgameFramework = new CardgameFramework();
         cardgameFramework.start(new GameSystem(new IGameSystemListener() {
@@ -41,6 +43,7 @@ public class SystemTest {
             public void triggerVictory() {
                 System.out.println("VICTORY!");
                 cardgameFramework.end();
+                loop.lazySet(false);
             }
         }), basePhaseSystem);
         executorService.scheduleAtFixedRate(new Runnable() {
@@ -49,7 +52,7 @@ public class SystemTest {
                 cardgameFramework.process();
             }
         }, 0, 16, TimeUnit.MILLISECONDS);
-        while (true) {
+        while (loop.get()) {
             // HERP
         }
     }
