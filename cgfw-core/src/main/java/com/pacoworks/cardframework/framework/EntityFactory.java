@@ -7,10 +7,8 @@ import com.artemis.utils.EntityBuilder;
 import com.pacoworks.cardframework.components.GamePhases;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 
-import java.util.List;
-
 public class EntityFactory {
-    public static Entity createGame(World world, List<BasePhaseSystem> phaseSystems) {
+    public static Entity createGame(World world, BasePhaseSystem phaseSystems) {
         return new EntityBuilder(world).with(new GamePhases(phaseSystems))
                 .group(Constants.Groups.FRAMEWORK).tag(Constants.Tags.GAME).build();
     }
