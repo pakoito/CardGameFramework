@@ -43,7 +43,7 @@ public class SystemTest {
                 cardgameFramework.end();
                 loop.lazySet(false);
             }
-        }), basePhaseSystem);
+        }), basePhaseSystem, "", true);
         executorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {

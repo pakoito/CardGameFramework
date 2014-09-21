@@ -12,6 +12,7 @@ import com.artemis.managers.TagManager;
 import com.pacoworks.cardframework.eventbus.EventGameEnded;
 import com.pacoworks.cardframework.eventbus.EventGameProcessed;
 import com.pacoworks.cardframework.eventbus.EventGameStarted;
+import com.pacoworks.cardframework.luaj.LuaJEngine;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.GameSystem;
 import com.squareup.otto.Bus;
@@ -22,9 +23,6 @@ import com.squareup.otto.ThreadEnforcer;
  */
 @Slf4j
 public class CardgameFramework {
-    @Getter
-    @Accessors(prefix = "m")
-    private World mWorld;
 
     private Entity mGame;
 
@@ -34,17 +32,28 @@ public class CardgameFramework {
 
     @Getter
     @Accessors(prefix = "m")
+    private World mWorld;
+
+    @Getter
+    @Accessors(prefix = "m")
     private Bus mEventBus;
 
-    public void start(GameSystem gameSystem, BasePhaseSystem phaseSystems) {
+    @Getter
+    @Accessors(prefix = "m")
+    private LuaJEngine mLuaEngine;
+
+    public void start(GameSystem gameSystem, BasePhaseSystem phaseSystems, String sriptsPath,
+            boolean debuggableScripts) {
         this.mGameSystem = gameSystem;
         mEventBus = new Bus(ThreadEnforcer.ANY);
+        mLuaEngine = LuaJEngine.create(sriptsPath, debuggableScripts);
         mWorld = new World();
         mWorld.setManager(new GroupManager());
         mWorld.setManager(new TagManager());
         mWorld.initialize();
         mWorld.setSystem(gameSystem);
         mWorld.inject(mEventBus);
+        mWorld.inject(mLuaEngine);
         mWorld.initialize();
         EntityFactory.createGame(mWorld, phaseSystems);
         isStarted = true;
