@@ -22,7 +22,6 @@ import com.pacoworks.cardframework.systems.GameSystem;
  */
 @Slf4j
 public class CardgameFramework {
-
     private Entity mGame;
 
     private boolean isStarted = false;
@@ -41,20 +40,19 @@ public class CardgameFramework {
     @Accessors(prefix = "m")
     private LuaJEngine mLuaEngine;
 
-    public void start(GameSystem gameSystem, BasePhaseSystem phaseSystems, String sriptsPath,
-            boolean debuggableScripts) {
+    public void start(EventCommander eventCommander, GameSystem gameSystem,
+            BasePhaseSystem startingPhase, String sriptsPath, boolean debuggableScripts) {
         this.mGameSystem = gameSystem;
-        mCommander = new EventCommander();
+        mCommander = eventCommander;
         mLuaEngine = LuaJEngine.create(sriptsPath, debuggableScripts, mCommander);
         mWorld = new World();
         mWorld.setManager(new GroupManager());
         mWorld.setManager(new TagManager());
         mWorld.initialize();
-        mWorld.setSystem(gameSystem);
         mWorld.inject(mCommander);
-        mWorld.inject(mLuaEngine);
+        mWorld.setSystem(gameSystem);
         mWorld.initialize();
-        EntityFactory.createGame(mWorld, phaseSystems);
+        EntityFactory.createGame(mWorld, startingPhase);
         isStarted = true;
         mCommander.postAnyEvent(EventGameStarted.create());
         log.info("CardFramework started");

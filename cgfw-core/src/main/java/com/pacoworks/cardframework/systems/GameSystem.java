@@ -24,13 +24,13 @@ public class GameSystem extends EntityProcessingSystem {
 
     private EventCommander mCommander;
 
-    private IGameSystemListener gameSystemListener;
+    private IVictoryDecider gameSystemListener;
 
     /**
      * Creates an entity system that uses the specified aspect as a matcher
      * against entities.
      */
-    public GameSystem(IGameSystemListener gameSystemListener) {
+    public GameSystem(IVictoryDecider gameSystemListener) {
         super(ASPECT);
         this.gameSystemListener = gameSystemListener;
     }
@@ -46,12 +46,11 @@ public class GameSystem extends EntityProcessingSystem {
             phaseSystems.push(nextPhase);
         }
         if (gameSystemListener.isVictoryCondition()) {
+            mCommander.postAnyEvent(EventVictory.create());
             while (phaseSystems.pop() != null) {
                 // POP POP!
                 log.info("Popping all events on the stack");
             }
-            gameSystemListener.triggerVictory();
-            mCommander.postAnyEvent(EventVictory.create());
         }
     }
 }
