@@ -9,8 +9,8 @@ import com.artemis.annotations.Wire;
 import com.artemis.systems.EntityProcessingSystem;
 import com.pacoworks.cardframework.components.GamePhases;
 import com.pacoworks.cardframework.custom.ConcurrentStack;
-import com.pacoworks.cardframework.eventbus.EventVictory;
-import com.squareup.otto.Bus;
+import com.pacoworks.cardframework.eventbus.EventCommander;
+import com.pacoworks.cardframework.eventbus.events.EventVictory;
 
 /**
  * Created by Paco on 20/09/2014.
@@ -22,7 +22,7 @@ public class GameSystem extends EntityProcessingSystem {
 
     ComponentMapper<GamePhases> gamePhasesComponentMapper;
 
-    private Bus mBus;
+    private EventCommander mCommander;
 
     private IGameSystemListener gameSystemListener;
 
@@ -51,7 +51,7 @@ public class GameSystem extends EntityProcessingSystem {
                 log.info("Popping all events on the stack");
             }
             gameSystemListener.triggerVictory();
-            mBus.post(EventVictory.create());
+            mCommander.postAnyEvent(EventVictory.create());
         }
     }
 }

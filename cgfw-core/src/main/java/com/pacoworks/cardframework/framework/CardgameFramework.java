@@ -9,14 +9,13 @@ import com.artemis.Entity;
 import com.artemis.World;
 import com.artemis.managers.GroupManager;
 import com.artemis.managers.TagManager;
-import com.pacoworks.cardframework.eventbus.EventGameEnded;
-import com.pacoworks.cardframework.eventbus.EventGameProcessed;
-import com.pacoworks.cardframework.eventbus.EventGameStarted;
+import com.pacoworks.cardframework.eventbus.EventCommander;
+import com.pacoworks.cardframework.eventbus.events.EventGameEnded;
+import com.pacoworks.cardframework.eventbus.events.EventGameProcessed;
+import com.pacoworks.cardframework.eventbus.events.EventGameStarted;
 import com.pacoworks.cardframework.luaj.LuaJEngine;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.GameSystem;
-import com.squareup.otto.Bus;
-import com.squareup.otto.ThreadEnforcer;
 
 /**
  * Created by Paco on 20/09/2014.
@@ -36,7 +35,7 @@ public class CardgameFramework {
 
     @Getter
     @Accessors(prefix = "m")
-    private Bus mEventBus;
+    private EventCommander mCommander;
 
     @Getter
     @Accessors(prefix = "m")
@@ -45,19 +44,19 @@ public class CardgameFramework {
     public void start(GameSystem gameSystem, BasePhaseSystem phaseSystems, String sriptsPath,
             boolean debuggableScripts) {
         this.mGameSystem = gameSystem;
-        mEventBus = new Bus(ThreadEnforcer.ANY);
-        mLuaEngine = LuaJEngine.create(sriptsPath, debuggableScripts);
+        mCommander = new EventCommander();
+        mLuaEngine = LuaJEngine.create(sriptsPath, debuggableScripts, mCommander);
         mWorld = new World();
         mWorld.setManager(new GroupManager());
         mWorld.setManager(new TagManager());
         mWorld.initialize();
         mWorld.setSystem(gameSystem);
-        mWorld.inject(mEventBus);
+        mWorld.inject(mCommander);
         mWorld.inject(mLuaEngine);
         mWorld.initialize();
         EntityFactory.createGame(mWorld, phaseSystems);
         isStarted = true;
-        mEventBus.post(EventGameStarted.create());
+        mCommander.postAnyEvent(EventGameStarted.create());
         log.info("CardFramework started");
     }
 
@@ -66,15 +65,15 @@ public class CardgameFramework {
             throw new IllegalStateException("CardFramework not started.");
         }
         mWorld.process();
-        mEventBus.post(EventGameProcessed.create());
+        mCommander.postAnyEvent(EventGameProcessed.create());
     }
 
     public void end() {
-        mEventBus.post(EventGameEnded.create());
+        mCommander.postAnyEvent(EventGameEnded.create());
         isStarted = false;
         mWorld.dispose();
         mWorld = null;
-        mEventBus = null;
+        mCommander = null;
         log.info("CardFramework ended");
     }
 }

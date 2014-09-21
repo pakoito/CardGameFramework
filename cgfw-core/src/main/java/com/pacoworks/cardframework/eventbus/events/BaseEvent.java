@@ -1,5 +1,5 @@
 
-package com.pacoworks.cardframework.eventbus;
+package com.pacoworks.cardframework.eventbus.events;
 
 import java.io.Serializable;
 

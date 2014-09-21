@@ -1,5 +1,5 @@
 
-package com.pacoworks.cardframework.eventbus;
+package com.pacoworks.cardframework.eventbus.events;
 
 import lombok.EqualsAndHashCode;
 import lombok.Value;
@@ -9,5 +9,5 @@ import lombok.Value;
  */
 @Value(staticConstructor = "create")
 @EqualsAndHashCode(callSuper = true)
-public class EventGameEnded extends BaseEvent {
+public class EventVictory extends BaseEvent {
 }
