@@ -1,6 +1,3 @@
-
-package com.pacoworks.cardframework.framework;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,7 +20,7 @@ public class Stuff implements ResourceFinder {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter script name");
-//        String script = keyboard.nextLine();
+        // String script = keyboard.nextLine();
         String script = "main.lua";
         Stuff event = new Stuff();
         OttoBus.getBus().register(event);
@@ -39,7 +36,7 @@ public class Stuff implements ResourceFinder {
         globals.loadfile(script).call(viewobj);
     }
 
-    public void hello(String str){
+    public void hello(String str) {
         System.out.println(str);
     }
 
