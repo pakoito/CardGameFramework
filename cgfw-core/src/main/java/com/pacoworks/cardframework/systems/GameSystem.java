@@ -7,15 +7,19 @@ import com.artemis.annotations.Wire;
 import com.artemis.systems.EntityProcessingSystem;
 import com.pacoworks.cardframework.components.GamePhases;
 import com.pacoworks.cardframework.custom.ConcurrentStack;
+import com.pacoworks.cardframework.eventbus.EventVictory;
+import com.squareup.otto.Bus;
 
 /**
  * Created by Paco on 20/09/2014.
  */
+@Wire
 public class GameSystem extends EntityProcessingSystem {
     private static final Aspect ASPECT = Aspect.getAspectForAll(GamePhases.class);
 
-    @Wire
     ComponentMapper<GamePhases> gamePhasesComponentMapper;
+
+    private Bus mBus;
 
     private IGameSystemListener gameSystemListener;
 
@@ -43,6 +47,7 @@ public class GameSystem extends EntityProcessingSystem {
                 // POP POP!
             }
             gameSystemListener.triggerVictory();
+            mBus.post(EventVictory.create());
         }
     }
 }

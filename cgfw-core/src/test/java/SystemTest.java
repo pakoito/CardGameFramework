@@ -34,7 +34,7 @@ public class SystemTest {
             @Override
             public boolean isVictoryCondition() {
                 System.out.println("Bup");
-                return Math.random() > 0.02d;
+                return Math.random() < 0.02d;
             }
 
             @Override
