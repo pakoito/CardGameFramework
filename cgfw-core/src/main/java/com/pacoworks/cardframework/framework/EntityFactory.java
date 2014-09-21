@@ -1,6 +1,8 @@
 
 package com.pacoworks.cardframework.framework;
 
+import lombok.NonNull;
+
 import com.artemis.Entity;
 import com.artemis.World;
 import com.artemis.utils.EntityBuilder;
@@ -8,7 +10,7 @@ import com.pacoworks.cardframework.components.GamePhases;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 
 public class EntityFactory {
-    public static Entity createGame(World world, BasePhaseSystem phaseSystems) {
+    public static Entity createGame(World world, @NonNull BasePhaseSystem phaseSystems) {
         EntityBuilder entityBuilder = new EntityBuilder(world);
         entityBuilder.with(new GamePhases(phaseSystems));
         entityBuilder.group(Constants.Groups.FRAMEWORK);
