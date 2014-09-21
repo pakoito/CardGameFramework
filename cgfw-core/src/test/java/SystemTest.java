@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.artemis.Aspect;
@@ -21,7 +19,6 @@ public class SystemTest {
 
     public static void main(String[] args) {
         final AtomicBoolean loop = new AtomicBoolean(true);
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         basePhaseSystem.add(new BasePhaseSystem(Aspect.getEmpty()) {
             @Override
             public BasePhaseSystem pushSystem() {
@@ -48,7 +45,6 @@ public class SystemTest {
             @Subscribe
             public void triggerVictory(EventVictory victory) {
                 loop.set(false);
-                cardgameFramework.end();
                 System.out.println("VICTORY!" + System.nanoTime());
             }
         });
@@ -62,5 +58,6 @@ public class SystemTest {
             System.out.println(System.nanoTime());
             cardgameFramework.process();
         }
+        cardgameFramework.end();
     }
 }
