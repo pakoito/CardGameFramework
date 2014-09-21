@@ -45,10 +45,11 @@ public class CardgameFramework {
     @Builder(builderClassName = "CFBuilder")
     private CardgameFramework(@NonNull EventCommander eventCommander,
             @NonNull GameSystem gameSystem, @NonNull BasePhaseSystem startingPhase,
-            @NonNull String scriptsPath, @NonNull boolean debuggableScripts) {
+            String scriptsPath, boolean debuggableScripts) {
         this.mGameSystem = gameSystem;
         mCommander = eventCommander;
-        mLuaEngine = LuaJEngine.create(scriptsPath, debuggableScripts, mCommander);
+        mLuaEngine = LuaJEngine.create((scriptsPath == null) ? "" : scriptsPath, debuggableScripts,
+                mCommander);
         mWorld = new World();
         mWorld.setManager(new GroupManager());
         mWorld.setManager(new TagManager());
