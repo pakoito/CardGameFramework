@@ -1,6 +1,7 @@
 
 package com.pacoworks.cardframework.systems;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import com.artemis.Aspect;
@@ -28,7 +29,7 @@ public class GameSystem extends EntityProcessingSystem {
 
     private IVictoryDecider gameSystemListener;
 
-    public GameSystem(IVictoryDecider gameSystemListener) {
+    public GameSystem(@NonNull IVictoryDecider gameSystemListener) {
         super(ASPECT);
         this.gameSystemListener = gameSystemListener;
     }
