@@ -22,6 +22,7 @@ public class GameSystem extends EntityProcessingSystem {
 
     ComponentMapper<GamePhases> gamePhasesComponentMapper;
 
+    @Wire
     private EventCommander mCommander;
 
     private IVictoryDecider gameSystemListener;

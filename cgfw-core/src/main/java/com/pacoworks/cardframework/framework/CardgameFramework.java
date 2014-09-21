@@ -66,7 +66,8 @@ public class CardgameFramework {
                 mWorld.setSystem(system, true);
             }
         }
-        mWorld.inject(mCommander);
+        // FIXME: Incorrect, should be done when creating the world
+        // mWorld.inject(mCommander);
         mWorld.initialize();
         EntityFactory.createGame(mWorld, phaseSystems.get(0));
         isStarted = true;
