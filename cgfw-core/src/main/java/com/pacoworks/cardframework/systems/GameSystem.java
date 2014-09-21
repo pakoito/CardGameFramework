@@ -1,3 +1,4 @@
+
 package com.pacoworks.cardframework.systems;
 
 import lombok.extern.slf4j.Slf4j;
@@ -27,10 +28,6 @@ public class GameSystem extends EntityProcessingSystem {
 
     private IVictoryDecider gameSystemListener;
 
-    /**
-     * Creates an entity system that uses the specified aspect as a matcher
-     * against entities.
-     */
     public GameSystem(IVictoryDecider gameSystemListener) {
         super(ASPECT);
         this.gameSystemListener = gameSystemListener;
@@ -43,7 +40,7 @@ public class GameSystem extends EntityProcessingSystem {
         BasePhaseSystem system = phaseSystems.pop();
         system.process();
         BasePhaseSystem nextPhase = system.pushSystem();
-        if (nextPhase != null){
+        if (nextPhase != null) {
             phaseSystems.push(nextPhase);
         }
         if (gameSystemListener.isVictoryCondition()) {
