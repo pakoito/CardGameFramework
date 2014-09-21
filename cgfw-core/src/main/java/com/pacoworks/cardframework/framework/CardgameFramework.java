@@ -54,7 +54,7 @@ public class CardgameFramework {
 
     public void process() throws IllegalStateException {
         if (!isStarted) {
-            throw new IllegalStateException("Framework not started.");
+            throw new IllegalStateException("CardFramework not started.");
         }
         mWorld.process();
         mEventBus.post(EventGameProcessed.create());
@@ -66,6 +66,6 @@ public class CardgameFramework {
         mWorld.dispose();
         mWorld = null;
         mEventBus = null;
-        log.info("CardFramewordk ended");
+        log.info("CardFramework ended");
     }
 }
