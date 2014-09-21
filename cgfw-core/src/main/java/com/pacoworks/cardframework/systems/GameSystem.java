@@ -1,5 +1,7 @@
 package com.pacoworks.cardframework.systems;
 
+import lombok.extern.slf4j.Slf4j;
+
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.Entity;
@@ -14,6 +16,7 @@ import com.squareup.otto.Bus;
  * Created by Paco on 20/09/2014.
  */
 @Wire
+@Slf4j
 public class GameSystem extends EntityProcessingSystem {
     private static final Aspect ASPECT = Aspect.getAspectForAll(GamePhases.class);
 
@@ -45,6 +48,7 @@ public class GameSystem extends EntityProcessingSystem {
         if (gameSystemListener.isVictoryCondition()) {
             while (phaseSystems.pop() != null) {
                 // POP POP!
+                log.info("Popping all events on the stack");
             }
             gameSystemListener.triggerVictory();
             mBus.post(EventVictory.create());

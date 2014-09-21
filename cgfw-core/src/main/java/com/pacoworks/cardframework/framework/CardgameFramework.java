@@ -3,6 +3,7 @@ package com.pacoworks.cardframework.framework;
 
 import lombok.Getter;
 import lombok.experimental.Accessors;
+import lombok.extern.slf4j.Slf4j;
 
 import com.artemis.Entity;
 import com.artemis.World;
@@ -19,6 +20,7 @@ import com.squareup.otto.ThreadEnforcer;
 /**
  * Created by Paco on 20/09/2014.
  */
+@Slf4j
 public class CardgameFramework {
     @Getter
     @Accessors(prefix = "m")
@@ -47,6 +49,7 @@ public class CardgameFramework {
         EntityFactory.createGame(mWorld, phaseSystems);
         isStarted = true;
         mEventBus.post(EventGameStarted.create());
+        log.info("CardFramework started");
     }
 
     public void process() throws IllegalStateException {
@@ -63,5 +66,6 @@ public class CardgameFramework {
         mWorld.dispose();
         mWorld = null;
         mEventBus = null;
+        log.info("CardFramewordk ended");
     }
 }
