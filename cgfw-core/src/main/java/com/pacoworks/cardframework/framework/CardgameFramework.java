@@ -57,8 +57,6 @@ public class CardgameFramework {
         mWorld = new World();
         mWorld.setManager(new GroupManager());
         mWorld.setManager(new TagManager());
-        mWorld.initialize();
-        mWorld.inject(mCommander);
         mWorld.setSystem(mGameSystem);
         for (BasePhaseSystem phaseSystem : phaseSystems) {
             mWorld.setSystem(phaseSystem, true);
@@ -68,6 +66,7 @@ public class CardgameFramework {
                 mWorld.setSystem(system, true);
             }
         }
+        mWorld.inject(mCommander);
         mWorld.initialize();
         EntityFactory.createGame(mWorld, phaseSystems.get(0));
         isStarted = true;
