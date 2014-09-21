@@ -47,9 +47,9 @@ public class SystemTest {
         eventCommander.subscribe(new Object() {
             @Subscribe
             public void triggerVictory(EventVictory victory) {
-                System.out.println("VICTORY!" + System.nanoTime());
+                loop.set(false);
                 cardgameFramework.end();
-                loop.lazySet(false);
+                System.out.println("VICTORY!" + System.nanoTime());
             }
         });
         // executorService.scheduleAtFixedRate(new Runnable() {
@@ -59,6 +59,7 @@ public class SystemTest {
         // }
         // }, 0, 100, TimeUnit.MILLISECONDS);
         while (loop.get()) {
+            System.out.println(System.nanoTime());
             cardgameFramework.process();
         }
     }
