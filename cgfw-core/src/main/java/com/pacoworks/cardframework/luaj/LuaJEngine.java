@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,49 +26,42 @@ public class LuaJEngine implements ResourceFinder {
 
     private final boolean debug;
 
+    @Getter(lazy = true)
+    private final Globals globals = startGlobals();
+
     public void loadScript(String fileName) {
-        Globals globals = getGlobals();
-        globals.finder = this;
-        globals.loadfile(fileName).call();
+        getGlobals().loadfile(fileName).call();
     }
 
     public void loadMethodScript(String fileName, String method, Object parameter1) {
-        Globals globals = getGlobals();
-        globals.finder = this;
+        getGlobals().finder = this;
         LuaValue luaParameters = CoerceJavaToLua.coerce(parameter1);
-        globals.loadfile(fileName).call(luaParameters);
+        getGlobals().loadfile(fileName).call(luaParameters);
     }
 
     public void loadMethodScript(String fileName, String method, Object parameter1,
             Object parameter2) {
-        Globals globals = getGlobals();
-        globals.finder = this;
+        getGlobals().finder = this;
         LuaValue luaParameters1 = CoerceJavaToLua.coerce(parameter1);
         LuaValue luaParameters2 = CoerceJavaToLua.coerce(parameter2);
-        globals.loadfile(fileName).call(luaParameters1, luaParameters2);
+        getGlobals().loadfile(fileName).call(luaParameters1, luaParameters2);
     }
 
     public void loadMethodScript(String fileName, String method, Object parameter1,
             Object parameter2, Object parameter3) {
-        Globals globals = getGlobals();
-        globals.finder = this;
         LuaValue luaParameters1 = CoerceJavaToLua.coerce(parameter1);
         LuaValue luaParameters2 = CoerceJavaToLua.coerce(parameter2);
         LuaValue luaParameters3 = CoerceJavaToLua.coerce(parameter3);
-        globals.loadfile(fileName).call(luaParameters1, luaParameters2, luaParameters3);
+        getGlobals().loadfile(fileName).call(luaParameters1, luaParameters2, luaParameters3);
     }
 
     public void loadMethodScript(String fileName, String method, String stringParameter) {
-        Globals globals = getGlobals();
-        globals.finder = this;
-        globals.loadfile(fileName).call(stringParameter);
+        getGlobals().loadfile(fileName).call(stringParameter);
     }
 
     public void loadMethodScript(String fileName, String method, Object... parameters) {
-        Globals globals = getGlobals();
-        globals.finder = this;
-        LuaValue luaParameters = CoerceJavaToLua.coerce(this);
-        globals.loadfile(fileName).call(luaParameters);
+        LuaValue luaParameters = CoerceJavaToLua.coerce(parameters);
+        getGlobals().loadfile(fileName).call(luaParameters);
     }
 
     @Override
@@ -79,7 +73,9 @@ public class LuaJEngine implements ResourceFinder {
         }
     }
 
-    private Globals getGlobals() {
-        return (debug) ? JsePlatform.debugGlobals() : JsePlatform.standardGlobals();
+    private Globals startGlobals() {
+        Globals newGlobals = (debug) ? JsePlatform.debugGlobals() : JsePlatform.standardGlobals();
+        newGlobals.finder = this;
+        return newGlobals;
     }
 }
