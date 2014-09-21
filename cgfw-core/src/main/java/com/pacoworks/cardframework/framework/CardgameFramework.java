@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.framework;
 import java.util.concurrent.ScheduledExecutorService;
 
 import lombok.Getter;
+import lombok.experimental.Accessors;
 
 import com.artemis.Entity;
 import com.artemis.World;
@@ -11,6 +12,7 @@ import com.artemis.managers.GroupManager;
 import com.artemis.managers.TagManager;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.GameSystem;
+import com.squareup.otto.Bus;
 
 /**
  * Created by Paco on 20/09/2014.
@@ -27,6 +29,10 @@ public class CardgameFramework {
 
     private ScheduledExecutorService executorService;
 
+    @Getter
+    @Accessors(prefix = "m")
+    private Bus mBus;
+
     public void start(GameSystem gameSystem, BasePhaseSystem phaseSystems) {
         this.gameSystem = gameSystem;
         world = new World();
@@ -37,6 +43,7 @@ public class CardgameFramework {
         world.initialize();
         EntityFactory.createGame(world, phaseSystems);
         isStarted = true;
+        mBus = new Bus();
     }
 
     public void process() throws IllegalStateException {

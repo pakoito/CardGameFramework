@@ -1,9 +1,10 @@
 package com.pacoworks.cardframework.eventbus;
 
-import com.squareup.otto.Bus;
-import com.squareup.otto.ThreadEnforcer;
 import lombok.Getter;
 import lombok.experimental.Accessors;
+
+import com.squareup.otto.Bus;
+import com.squareup.otto.ThreadEnforcer;
 
 /**
  * Created by Paco on 20/09/2014.
