@@ -25,10 +25,10 @@ public final class Constants {
     }
 
     public class Groups {
-        public static final String FRAMEWORK = "P";
+        public static final String FRAMEWORK = "F";
 
         public static final String CARD = "C";
 
-        public static final String PLAYER = "C";
+        public static final String PLAYER = "P";
     }
 }
