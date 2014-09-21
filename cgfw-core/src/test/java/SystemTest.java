@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.artemis.Aspect;
@@ -53,14 +52,14 @@ public class SystemTest {
                 loop.lazySet(false);
             }
         });
-        executorService.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                cardgameFramework.process();
-            }
-        }, 0, 100, TimeUnit.MILLISECONDS);
+        // executorService.scheduleAtFixedRate(new Runnable() {
+        // @Override
+        // public void run() {
+        //
+        // }
+        // }, 0, 100, TimeUnit.MILLISECONDS);
         while (loop.get()) {
-            // HERP
+            cardgameFramework.process();
         }
     }
 }
