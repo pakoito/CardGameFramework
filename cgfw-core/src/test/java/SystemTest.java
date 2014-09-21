@@ -32,13 +32,18 @@ public class SystemTest {
     public static void main(String[] args) {
         final AtomicBoolean loop = new AtomicBoolean(true);
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-        final CardgameFramework cardgameFramework = new CardgameFramework();
+        CardgameFramework.CFBuilder builder = CardgameFramework.builder();
         GameSystem gameSystem = new GameSystem(new IVictoryDecider() {
             @Override
             public boolean isVictoryCondition() {
                 return Math.random() < 0.5d;
             }
-
+        });
+        EventCommander eventCommander = new EventCommander();
+        final CardgameFramework cardgameFramework = builder.debuggableScripts(true)
+                .eventCommander(eventCommander).gameSystem(gameSystem).scriptsPath("")
+                .startingPhase(basePhaseSystem).build();
+        eventCommander.subscribe(new Object() {
             @Subscribe
             public void triggerVictory(EventVictory victory) {
                 System.out.println("VICTORY!" + System.nanoTime());
@@ -46,9 +51,6 @@ public class SystemTest {
                 loop.lazySet(false);
             }
         });
-        EventCommander eventCommander = new EventCommander();
-        eventCommander.subscribe(gameSystem);
-        cardgameFramework.start(eventCommander, gameSystem, basePhaseSystem, "", true);
         executorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {

@@ -2,7 +2,9 @@
 package com.pacoworks.cardframework.framework;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.experimental.Accessors;
+import lombok.experimental.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 import com.artemis.Entity;
@@ -40,11 +42,13 @@ public class CardgameFramework {
     @Accessors(prefix = "m")
     private LuaJEngine mLuaEngine;
 
-    public void start(EventCommander eventCommander, GameSystem gameSystem,
-            BasePhaseSystem startingPhase, String sriptsPath, boolean debuggableScripts) {
+    @Builder(builderClassName = "CFBuilder")
+    private CardgameFramework(@NonNull EventCommander eventCommander,
+            @NonNull GameSystem gameSystem, @NonNull BasePhaseSystem startingPhase,
+            @NonNull String scriptsPath, @NonNull boolean debuggableScripts) {
         this.mGameSystem = gameSystem;
         mCommander = eventCommander;
-        mLuaEngine = LuaJEngine.create(sriptsPath, debuggableScripts, mCommander);
+        mLuaEngine = LuaJEngine.create(scriptsPath, debuggableScripts, mCommander);
         mWorld = new World();
         mWorld.setManager(new GroupManager());
         mWorld.setManager(new TagManager());
