@@ -33,13 +33,13 @@ public class SystemTest {
         cardgameFramework.start(new GameSystem(new IGameSystemListener() {
             @Override
             public boolean isVictoryCondition() {
-                System.out.println("Bup");
+                System.out.println("Bup " + System.nanoTime());
                 return Math.random() < 0.02d;
             }
 
             @Override
             public void triggerVictory() {
-                System.out.println("VICTORY!");
+                System.out.println("VICTORY!" + System.nanoTime());
                 cardgameFramework.end();
                 loop.lazySet(false);
             }
@@ -49,7 +49,7 @@ public class SystemTest {
             public void run() {
                 cardgameFramework.process();
             }
-        }, 0, 16, TimeUnit.MILLISECONDS);
+        }, 0, 100, TimeUnit.MILLISECONDS);
         while (loop.get()) {
             // HERP
         }
