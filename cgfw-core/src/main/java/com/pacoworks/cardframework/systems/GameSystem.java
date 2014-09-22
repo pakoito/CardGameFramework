@@ -40,8 +40,9 @@ public class GameSystem extends EntityProcessingSystem {
         ConcurrentStack<BasePhaseSystem> phaseSystems = phases.getPhaseSystems();
         BasePhaseSystem system = phaseSystems.pop();
         system.process();
-        BasePhaseSystem nextPhase = system.pushSystem();
-        if (nextPhase != null) {
+        BasePhaseSystem[] nextPhases = system.pushSystems();
+        if (nextPhases != null && nextPhases.length > 0) {
+            for (BasePhaseSystem nextPhase : nextPhases)
             phaseSystems.push(nextPhase);
         }
         if (gameSystemListener.isVictoryCondition()) {

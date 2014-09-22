@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import com.artemis.Aspect;
 import com.artemis.Entity;
 import com.pacoworks.cardframework.eventbus.EventCommander;
@@ -10,6 +6,10 @@ import com.pacoworks.cardframework.framework.CardgameFramework;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.IVictoryDecider;
 import com.squareup.otto.Subscribe;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by Paco on 20/09/2014.
@@ -21,8 +21,10 @@ public class SystemTest {
         final AtomicBoolean loop = new AtomicBoolean(true);
         basePhaseSystem.add(new BasePhaseSystem(Aspect.getEmpty()) {
             @Override
-            public BasePhaseSystem pushSystem() {
-                return this;
+            public BasePhaseSystem[] pushSystems() {
+                return new BasePhaseSystem[] {
+                    this
+                };
             }
 
             @Override
