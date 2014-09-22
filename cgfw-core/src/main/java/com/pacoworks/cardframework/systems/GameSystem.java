@@ -42,8 +42,9 @@ public class GameSystem extends EntityProcessingSystem {
         system.process();
         BasePhaseSystem[] nextPhases = system.pushSystems();
         if (nextPhases != null && nextPhases.length > 0) {
-            for (BasePhaseSystem nextPhase : nextPhases)
-            phaseSystems.push(nextPhase);
+            for (BasePhaseSystem nextPhase : nextPhases) {
+                phaseSystems.push(nextPhase);
+            }
         }
         if (gameSystemListener.isVictoryCondition()) {
             mCommander.postAnyEvent(EventVictory.create());
