@@ -10,7 +10,7 @@ import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
 
 /**
- * Created by Paco on 21/09/2014. License available in LICENSE.md
+ * Created by Paco on 20/09/2014. License available in LICENSE.md
  */
 public class EventCommander {
     @Getter(lazy = true, value = AccessLevel.PROTECTED)

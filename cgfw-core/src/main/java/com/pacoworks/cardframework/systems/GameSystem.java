@@ -15,7 +15,7 @@ import com.pacoworks.cardframework.eventbus.EventCommander;
 import com.pacoworks.cardframework.eventbus.events.EventVictory;
 
 /**
- * Created by Paco on 20/09/2014.
+ * Created by Paco on 20/09/2014. License available in LICENSE.md
  */
 @Wire
 @Slf4j

@@ -3,6 +3,9 @@ package com.pacoworks.cardframework.framework;
 
 import java.util.HashMap;
 
+/**
+ * Created by Paco on 20/09/2014. License available in LICENSE.md
+ */
 public final class Constants {
 
     static {

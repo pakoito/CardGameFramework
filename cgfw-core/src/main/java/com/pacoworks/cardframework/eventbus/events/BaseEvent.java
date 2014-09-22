@@ -7,7 +7,7 @@ import lombok.Value;
 import lombok.experimental.NonFinal;
 
 /**
- * Created by Paco on 21/09/2014.
+ * Created by Paco on 21/09/2014. License available in LICENSE.md
  */
 @Value
 @NonFinal

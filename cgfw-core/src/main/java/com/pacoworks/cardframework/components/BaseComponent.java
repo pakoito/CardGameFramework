@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 import com.artemis.Component;
 
 /**
- * Created by Paco on 20/09/2014.
+ * Created by Paco on 20/09/2014. License available in LICENSE.md
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
