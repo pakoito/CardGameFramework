@@ -1,21 +1,14 @@
 
 package com.pacoworks.cardframework.framework;
 
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
-import lombok.experimental.Builder;
-import lombok.extern.slf4j.Slf4j;
-
 import com.artemis.Entity;
 import com.artemis.EntitySystem;
 import com.artemis.World;
 import com.artemis.WorldConfiguration;
 import com.artemis.managers.GroupManager;
+import com.artemis.managers.PlayerManager;
 import com.artemis.managers.TagManager;
+import com.artemis.managers.TeamManager;
 import com.pacoworks.cardframework.eventbus.EventCommander;
 import com.pacoworks.cardframework.eventbus.events.EventGameEnded;
 import com.pacoworks.cardframework.eventbus.events.EventGameProcessed;
@@ -24,6 +17,14 @@ import com.pacoworks.cardframework.luaj.LuaJEngine;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.GameSystem;
 import com.pacoworks.cardframework.systems.IVictoryDecider;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.experimental.Accessors;
+import lombok.experimental.Builder;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by Paco on 20/09/2014. See LICENSE.md
@@ -48,6 +49,8 @@ public class CardgameFramework {
     @Accessors(prefix = "m")
     private LuaJEngine mLuaEngine;
 
+    // TODO starting phase, passive system list, active system list
+    // TODO player/team configuration
     @Builder(builderClassName = "CFBuilder")
     private CardgameFramework(@NonNull EventCommander eventCommander,
             @NonNull IVictoryDecider victoryChecker, @NonNull List<BasePhaseSystem> phaseSystems,
@@ -59,6 +62,8 @@ public class CardgameFramework {
         mWorld = new World(new WorldConfiguration().register(mCommander));
         mWorld.setManager(new GroupManager());
         mWorld.setManager(new TagManager());
+        mWorld.setManager(new TeamManager());
+        mWorld.setManager(new PlayerManager());
         mWorld.setSystem(mGameSystem);
         for (BasePhaseSystem phaseSystem : phaseSystems) {
             mWorld.setSystem(phaseSystem, true);
