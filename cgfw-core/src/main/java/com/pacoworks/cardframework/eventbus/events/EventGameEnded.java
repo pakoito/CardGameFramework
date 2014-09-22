@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Value;
 
 /**
- * Created by Paco on 20/09/2014. License available in LICENSE.md
+ * Created by Paco on 20/09/2014. See LICENSE.md
  */
 @Value(staticConstructor = "create")
 @EqualsAndHashCode(callSuper = true)

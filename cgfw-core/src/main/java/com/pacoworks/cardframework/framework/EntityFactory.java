@@ -10,7 +10,7 @@ import com.pacoworks.cardframework.components.GamePhases;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 
 /**
- * Created by Paco on 20/09/2014. License available in LICENSE.md
+ * Created by Paco on 20/09/2014. See LICENSE.md
  */
 public class EntityFactory {
     public static Entity createGame(World world, @NonNull BasePhaseSystem phaseSystems) {
