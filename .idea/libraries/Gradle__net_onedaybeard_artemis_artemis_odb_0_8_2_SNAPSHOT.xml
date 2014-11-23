@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: net.onedaybeard.artemis:artemis-odb:0.8.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.onedaybeard.artemis/artemis-odb/0.8.2-SNAPSHOT/ae18d44f94840610b4911455840e67d92813420f/artemis-odb-0.8.2-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.onedaybeard.artemis/artemis-odb/0.8.2-SNAPSHOT/b108be537b30e4a2566b66c8610298bd1b27e82/artemis-odb-0.8.2-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
