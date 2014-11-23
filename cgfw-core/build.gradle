@@ -3,6 +3,15 @@ apply plugin: 'java'
 sourceCompatibility = 1.6
 version = '1.0'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.stanfy.android:gradle-android-apt:+'
+    }
+}
+
 repositories {
     mavenCentral()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
@@ -15,4 +24,6 @@ dependencies {
     compile 'net.onedaybeard.artemis:artemis-odb:0.8.+'
     compile 'org.luaj:luaj-jse:3.0'
     compile 'org.slf4j:slf4j-api:1.7.7'
+    provided 'com.google.dagger:dagger-compiler:+'
+    compile 'com.google.dagger:dagger:+'
 }

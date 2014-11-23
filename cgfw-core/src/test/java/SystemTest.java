@@ -40,9 +40,9 @@ public class SystemTest {
                 return Math.random() < 0.5d;
             }
         };
-        EventCommander eventCommander = new EventCommander();
-        final CardgameFramework cardgameFramework = builder.eventCommander(eventCommander)
+        final CardgameFramework cardgameFramework = builder
                 .victoryChecker(victoryDecider).phaseSystems(basePhaseSystem).build();
+        EventCommander eventCommander = cardgameFramework.getCommander();
         eventCommander.subscribe(new Object() {
             @Subscribe
             public void triggerVictory(EventVictory victory) {
