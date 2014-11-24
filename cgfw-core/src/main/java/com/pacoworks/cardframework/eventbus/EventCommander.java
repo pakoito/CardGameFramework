@@ -8,13 +8,21 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * Created by Paco on 20/09/2014. See LICENSE.md
  */
+@Singleton
 public class EventCommander {
     @Getter(lazy = true, value = AccessLevel.PROTECTED)
     @Accessors(prefix = "m")
     private final Bus mEventBus = createBus();
+
+    @Inject
+    public EventCommander() {
+    }
 
     private Bus createBus() {
         return new Bus(ThreadEnforcer.ANY);

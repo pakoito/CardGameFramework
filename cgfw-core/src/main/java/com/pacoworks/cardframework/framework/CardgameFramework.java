@@ -4,7 +4,6 @@ package com.pacoworks.cardframework.framework;
 import com.artemis.Entity;
 import com.artemis.EntitySystem;
 import com.artemis.World;
-import com.pacoworks.cardframework.dependencies.EventCommanderModule;
 import com.pacoworks.cardframework.dependencies.GameSystemModule;
 import com.pacoworks.cardframework.dependencies.LuaJModule;
 import com.pacoworks.cardframework.dependencies.WorldModule;
@@ -35,7 +34,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class CardgameFramework {
     @Singleton
     @Component(modules = {
-            GameSystemModule.class, LuaJModule.class, WorldModule.class, EventCommanderModule.class
+            GameSystemModule.class, LuaJModule.class, WorldModule.class
     })
     public interface CardgameFrameworkComponent {
         void inject(CardgameFramework framework);
