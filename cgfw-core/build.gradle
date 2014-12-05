@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'propdeps-idea'
 
 sourceCompatibility = 1.6
 version = '1.0'
@@ -6,9 +7,11 @@ version = '1.0'
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'http://repo.spring.io/plugins-release' }
     }
     dependencies {
         classpath 'com.stanfy.android:gradle-android-apt:+'
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
     }
 }
 
