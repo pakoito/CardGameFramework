@@ -43,7 +43,8 @@ public class GameSystem extends EntityProcessingSystem {
         }
         GamePhases phases = gamePhasesComponentMapper.get(e);
         ConcurrentStack<BasePhaseSystem> phaseSystems = phases.getPhaseSystems();
-        if (gameSystemListener.isVictoryCondition()) {
+        BasePhaseSystem system = phaseSystems.pop();
+        if (gameSystemListener.isVictoryCondition() || system == null) {
             mCommander.postAnyEvent(EventVictory.create());
             while (phaseSystems.pop() != null) {
                 // POP POP!
@@ -52,7 +53,6 @@ public class GameSystem extends EntityProcessingSystem {
             victoryCondition = true;
             return;
         }
-        BasePhaseSystem system = phaseSystems.pop();
         system.process();
         BasePhaseSystem[] nextPhases = system.pushSystems();
         if (nextPhases != null && nextPhases.length > 0) {
