@@ -54,8 +54,6 @@ public class CardgameFramework {
     @Inject
     protected World mWorld;
 
-    @Getter
-    @Accessors(prefix = "m")
     @Inject
     protected IEventCommander mCommander;
 
@@ -69,12 +67,12 @@ public class CardgameFramework {
     // TODO starting phase, passive system list, active system list
     // TODO player/team configuration
     @Builder(builderClassName = "CFBuilder")
-    private CardgameFramework(@NonNull IVictoryDecider victoryChecker,
+    private CardgameFramework(@NonNull IVictoryDecider victoryChecker, @NonNull IEventCommander eventCommander,
             @NonNull Iterable<BasePhaseSystem> phaseSystems, @NonNull BasePhaseSystem startingSystem,
             Iterable<EntitySystem> otherSystems, String scriptsPath, boolean debuggableScripts) {
         componentInjector = Dagger_CardgameFramework$CardgameFrameworkComponent
                 .builder()
-                .gameSystemModule(new GameSystemModule(victoryChecker))
+                .gameSystemModule(new GameSystemModule(victoryChecker, eventCommander))
                 .luaJModule(
                         new LuaJModule((scriptsPath == null) ? "" : scriptsPath, debuggableScripts))
                 .worldModule(new WorldModule(phaseSystems, otherSystems)).build();
