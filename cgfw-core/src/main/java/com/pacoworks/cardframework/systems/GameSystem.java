@@ -1,6 +1,9 @@
 
 package com.pacoworks.cardframework.systems;
 
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.Entity;
@@ -8,10 +11,8 @@ import com.artemis.annotations.Wire;
 import com.artemis.systems.EntityProcessingSystem;
 import com.pacoworks.cardframework.components.GamePhases;
 import com.pacoworks.cardframework.custom.ConcurrentStack;
-import com.pacoworks.cardframework.eventbus.EventCommander;
+import com.pacoworks.cardframework.eventbus.IEventCommander;
 import com.pacoworks.cardframework.eventbus.events.EventVictory;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by Paco on 20/09/2014. See LICENSE.md
@@ -24,7 +25,7 @@ public class GameSystem extends EntityProcessingSystem {
     ComponentMapper<GamePhases> gamePhasesComponentMapper;
 
     @Wire
-    private EventCommander mCommander;
+    private IEventCommander mCommander;
 
     private IVictoryDecider gameSystemListener;
 

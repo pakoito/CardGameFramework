@@ -1,23 +1,21 @@
 
 package com.pacoworks.cardframework.luaj;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-
+import com.pacoworks.cardframework.eventbus.IEventCommander;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.luaj.vm2.Globals;
 import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.ResourceFinder;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
-import com.pacoworks.cardframework.eventbus.EventCommander;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * Created by Paco on 20/09/2014. See LICENSE.md
@@ -29,7 +27,7 @@ public final class LuaJEngine implements ResourceFinder {
 
     private final boolean debug;
 
-    private final EventCommander commander;
+    private final IEventCommander commander;
 
     @Getter(lazy = true, value = AccessLevel.PROTECTED)
     private final LuaValue luaCommander = startCommander();

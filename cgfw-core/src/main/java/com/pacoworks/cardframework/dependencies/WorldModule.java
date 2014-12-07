@@ -8,7 +8,7 @@ import com.artemis.managers.GroupManager;
 import com.artemis.managers.PlayerManager;
 import com.artemis.managers.TagManager;
 import com.artemis.managers.TeamManager;
-import com.pacoworks.cardframework.eventbus.EventCommander;
+import com.pacoworks.cardframework.eventbus.IEventCommander;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.GameSystem;
 import dagger.Module;
@@ -33,7 +33,7 @@ public class WorldModule {
 
     @Provides
     @Singleton
-    World provideWorld(GameSystem gameSystem, EventCommander commander) {
+    World provideWorld(GameSystem gameSystem, IEventCommander commander) {
         World world = new World(new WorldConfiguration().register(commander));
         world.setManager(new GroupManager());
         world.setManager(new TagManager());

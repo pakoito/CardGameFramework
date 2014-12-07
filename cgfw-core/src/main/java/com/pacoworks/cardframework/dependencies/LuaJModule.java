@@ -1,7 +1,7 @@
 
 package com.pacoworks.cardframework.dependencies;
 
-import com.pacoworks.cardframework.eventbus.EventCommander;
+import com.pacoworks.cardframework.eventbus.IEventCommander;
 import com.pacoworks.cardframework.luaj.LuaJEngine;
 import dagger.Module;
 import dagger.Provides;
@@ -24,7 +24,7 @@ public class LuaJModule {
 
     @Provides
     @Singleton
-    LuaJEngine provideLuaJEngine(EventCommander eventCommander) {
+    LuaJEngine provideLuaJEngine(IEventCommander eventCommander) {
         return LuaJEngine.create((scriptsPath == null) ? "" : scriptsPath, debuggableScripts,
                 eventCommander);
     }
