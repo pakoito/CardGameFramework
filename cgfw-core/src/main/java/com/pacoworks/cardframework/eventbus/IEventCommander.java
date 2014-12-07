@@ -10,10 +10,5 @@ import javax.inject.Singleton;
  */
 @Singleton
 public interface IEventCommander {
-
-    public void subscribe(Object subscriptor);
-
-    public void unsubscribe(Object subscriptor);
-
     public void postAnyEvent(BaseEvent event);
 }
