@@ -1,13 +1,25 @@
 
 package com.pacoworks.cardframework.framework;
 
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.experimental.Accessors;
+import lombok.experimental.Builder;
+import lombok.extern.slf4j.Slf4j;
+
 import com.artemis.Entity;
 import com.artemis.EntitySystem;
 import com.artemis.World;
 import com.pacoworks.cardframework.dependencies.GameSystemModule;
 import com.pacoworks.cardframework.dependencies.LuaJModule;
 import com.pacoworks.cardframework.dependencies.WorldModule;
-import com.pacoworks.cardframework.eventbus.EventCommander;
+import com.pacoworks.cardframework.eventbus.IEventCommander;
 import com.pacoworks.cardframework.eventbus.events.EventGameEnded;
 import com.pacoworks.cardframework.eventbus.events.EventGameProcessed;
 import com.pacoworks.cardframework.eventbus.events.EventGameStarted;
@@ -16,16 +28,6 @@ import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.GameSystem;
 import com.pacoworks.cardframework.systems.IVictoryDecider;
 import dagger.Component;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.experimental.Accessors;
-import lombok.experimental.Builder;
-import lombok.extern.slf4j.Slf4j;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by Paco on 20/09/2014. See LICENSE.md
@@ -55,7 +57,7 @@ public class CardgameFramework {
     @Getter
     @Accessors(prefix = "m")
     @Inject
-    protected EventCommander mCommander;
+    protected IEventCommander mCommander;
 
     @Getter
     @Accessors(prefix = "m")
@@ -68,8 +70,8 @@ public class CardgameFramework {
     // TODO player/team configuration
     @Builder(builderClassName = "CFBuilder")
     private CardgameFramework(@NonNull IVictoryDecider victoryChecker,
-            @NonNull List<BasePhaseSystem> phaseSystems,
-            List<EntitySystem> otherSystems, String scriptsPath, boolean debuggableScripts) {
+            @NonNull Iterable<BasePhaseSystem> phaseSystems, @NonNull BasePhaseSystem startingSystem,
+            Iterable<EntitySystem> otherSystems, String scriptsPath, boolean debuggableScripts) {
         componentInjector = Dagger_CardgameFramework$CardgameFrameworkComponent
                 .builder()
                 .gameSystemModule(new GameSystemModule(victoryChecker))
@@ -78,18 +80,22 @@ public class CardgameFramework {
                 .worldModule(new WorldModule(phaseSystems, otherSystems)).build();
         componentInjector.inject(this);
         mWorld.initialize();
-        EntityFactory.createGame(mWorld, phaseSystems.get(0));
+        EntityFactory.createGame(mWorld, startingSystem);
         isStarted.set(true);
         mCommander.postAnyEvent(EventGameStarted.create());
         log.info("CardFramework started");
     }
 
     public void process() throws IllegalStateException {
+        assertStarted();
+        mCommander.postAnyEvent(EventGameProcessed.create());
+        mWorld.process();
+    }
+
+    private void assertStarted() {
         if (!isStarted.get()) {
             throw new IllegalStateException("CardFramework not started.");
         }
-        mCommander.postAnyEvent(EventGameProcessed.create());
-        mWorld.process();
     }
 
     public void end() {

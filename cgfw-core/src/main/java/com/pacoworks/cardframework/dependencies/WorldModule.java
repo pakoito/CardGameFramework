@@ -15,19 +15,18 @@ import dagger.Module;
 import dagger.Provides;
 
 import javax.inject.Singleton;
-import java.util.List;
 
 /**
  * Created by Paco on 23/11/2014. See LICENSE.md
  */
 @Module
 public class WorldModule {
-    private final List<? extends BasePhaseSystem> phaseSystems;
+    private final Iterable<? extends BasePhaseSystem> phaseSystems;
 
-    private final List<? extends EntitySystem> otherSystems;
+    private final Iterable<? extends EntitySystem> otherSystems;
 
-    public WorldModule(List<? extends BasePhaseSystem> phaseSystems,
-            List<? extends EntitySystem> otherSystems) {
+    public WorldModule(Iterable<? extends BasePhaseSystem> phaseSystems,
+                       Iterable<? extends EntitySystem> otherSystems) {
         this.phaseSystems = phaseSystems;
         this.otherSystems = otherSystems;
     }

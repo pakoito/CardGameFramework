@@ -15,7 +15,7 @@ import javax.inject.Singleton;
  * Created by Paco on 20/09/2014. See LICENSE.md
  */
 @Singleton
-public class EventCommander {
+public class EventCommander implements IEventCommander{
     @Getter(lazy = true, value = AccessLevel.PROTECTED)
     @Accessors(prefix = "m")
     private final Bus mEventBus = createBus();
