@@ -29,4 +29,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.7'
     provided 'com.google.dagger:dagger-compiler:+'
     compile 'com.google.dagger:dagger:+'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.2.+'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.2.+'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.2.+'
 }
