@@ -2,14 +2,11 @@ import com.pacoworks.cardframework.api.factories.system.SystemFactory;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Paco on 20/09/2014.
  */
 public class SystemTest {
-    private static final List<BasePhaseSystem> basePhaseSystem = new ArrayList<BasePhaseSystem>();
 
     public static void main(String[] args) {
         oldMethod();

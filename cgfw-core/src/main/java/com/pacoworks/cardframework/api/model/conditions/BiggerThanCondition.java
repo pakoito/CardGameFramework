@@ -58,6 +58,12 @@ public class BiggerThanCondition extends CFWCondition {
 
     @Override
     public boolean getResult() {
-        return false;
+        if (left == null){
+            return false;
+        }
+        if (right == null){
+            return true;
+        }
+        return left.getValue() > right.getValue();
     }
 }

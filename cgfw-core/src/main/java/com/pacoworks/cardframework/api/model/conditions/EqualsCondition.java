@@ -15,8 +15,8 @@ import javax.annotation.Generated;
         "type", "left", "right"
 })
 @ToString
-public class LowerThanCondition extends CFWCondition {
-    public static final String CONDITION_NAME = "lower_than";
+public class EqualsCondition extends CFWCondition {
+    public static final String CONDITION_NAME = "equals";
 
     @JsonProperty("left")
     private ICFWValue left;
@@ -58,12 +58,9 @@ public class LowerThanCondition extends CFWCondition {
 
     @Override
     public boolean getResult() {
-        if (left == null){
+        if (left == null || right == null){
             return false;
         }
-        if (right == null){
-            return true;
-        }
-        return left.getValue() > right.getValue();
+        return left.getValue() ==right.getValue();
     }
 }

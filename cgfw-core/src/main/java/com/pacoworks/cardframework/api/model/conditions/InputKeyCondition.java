@@ -38,6 +38,6 @@ public class InputKeyCondition extends CFWCondition {
 
     @Override
     public boolean getResult() {
-        return false;
+        return Math.random() > 0.5d;
     }
 }

@@ -79,6 +79,19 @@ public class BetweenCondition extends CFWCondition {
 
     @Override
     public boolean getResult() {
-        return false;
+        if (value == null) {
+            return false;
+        }
+        for (ICFWValue floor: floorEx){
+            if (value.getValue() < floor.getValue()) {
+                return false;
+            }
+        }
+        for (ICFWValue ceil: ceilEx){
+            if (value.getValue() > ceil.getValue()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
