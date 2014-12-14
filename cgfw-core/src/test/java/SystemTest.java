@@ -1,5 +1,5 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pacoworks.cardframework.api.CFWSystem;
+import com.pacoworks.cardframework.api.factories.system.SystemFactory;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 
 import java.io.IOException;
@@ -16,8 +16,8 @@ public class SystemTest {
         oldMethod();
         ObjectMapper mapper = new ObjectMapper();
         try {
-            CFWSystem system = mapper.readValue(SystemTest.class.getResource("selectnextplayer.json"), CFWSystem.class);
-            System.out.println(system.toString());
+            BasePhaseSystem system = SystemFactory.create(SystemTest.class.getResource("dealhidden.json"));
+            system.fakeProcess();
         } catch (IOException e) {
             e.printStackTrace();
         }

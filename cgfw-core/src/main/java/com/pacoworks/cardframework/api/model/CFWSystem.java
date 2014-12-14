@@ -1,14 +1,11 @@
 
-package com.pacoworks.cardframework.api;
+package com.pacoworks.cardframework.api.model;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.ToString;
 
 import javax.annotation.Generated;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
@@ -84,7 +81,7 @@ public class CFWSystem {
      * @return The fsm
      */
     @JsonProperty("fsm")
-    public List<CFWState> getState() {
+    public List<CFWState> getStates() {
         return fsm;
     }
 
@@ -92,8 +89,19 @@ public class CFWSystem {
      * @param fsm The fsm
      */
     @JsonProperty("fsm")
-    public void setState(List<CFWState> fsm) {
+    public void setStates(List<CFWState> fsm) {
         this.fsm = fsm;
+        this.fsm.sort(new Comparator<CFWState>() {
+            @Override
+            public int compare(CFWState o1, CFWState o2) {
+                if (o1.getPriority() < o2.getPriority()) {
+                    return -1;
+                } else if (o1.getPriority() > o2.getPriority()) {
+                    return 1;
+                }
+                return 0;
+            }
+        });
     }
 
     @JsonAnyGetter

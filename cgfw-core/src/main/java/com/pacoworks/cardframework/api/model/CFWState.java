@@ -1,9 +1,9 @@
 
-package com.pacoworks.cardframework.api;
+package com.pacoworks.cardframework.api.model;
 
 import com.fasterxml.jackson.annotation.*;
-import com.pacoworks.cardframework.api.actions.ICFWAction;
-import com.pacoworks.cardframework.api.conditions.ICFWCondition;
+import com.pacoworks.cardframework.api.model.actions.ICFWAction;
+import com.pacoworks.cardframework.api.model.conditions.ICFWCondition;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -54,7 +54,7 @@ public class CFWState {
      * @return The action
      */
     @JsonProperty("action")
-    public List<ICFWAction> getAction() {
+    public List<ICFWAction> getActions() {
         return action;
     }
 
@@ -62,7 +62,7 @@ public class CFWState {
      * @param action The action
      */
     @JsonProperty("action")
-    public void setAction(List<ICFWAction> action) {
+    public void setActions(List<ICFWAction> action) {
         this.action = action;
     }
 

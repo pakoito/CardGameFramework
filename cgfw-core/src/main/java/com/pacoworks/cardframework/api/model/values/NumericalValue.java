@@ -1,5 +1,5 @@
 
-package com.pacoworks.cardframework.api.conditions;
+package com.pacoworks.cardframework.api.model.values;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,17 +14,17 @@ import javax.annotation.Generated;
         "type", "value"
 })
 @ToString
-public class InputKeyCondition extends CFWCondition {
-    public static final String CONDITION_NAME = "input_key";
+public class NumericalValue extends CFWValue {
+    public static final String VALUE_NAME = "numerical";
 
     @JsonProperty("value")
-    private String value;
+    private float value;
 
     /**
      * @return The value
      */
     @JsonProperty("value")
-    public String getValue() {
+    public Float getValue() {
         return value;
     }
 
@@ -32,12 +32,7 @@ public class InputKeyCondition extends CFWCondition {
      * @param value The value
      */
     @JsonProperty("value")
-    public void setValue(String value) {
+    public void setValue(float value) {
         this.value = value;
-    }
-
-    @Override
-    public boolean getResult() {
-        return false;
     }
 }

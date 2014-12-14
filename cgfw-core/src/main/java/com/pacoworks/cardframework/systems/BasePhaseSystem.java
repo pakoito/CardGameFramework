@@ -21,4 +21,8 @@ public abstract class BasePhaseSystem extends EntityProcessingSystem implements 
     public BasePhaseSystem(Aspect aspect) {
         super(aspect);
     }
+
+    public void fakeProcess() {
+        process(null);
+    }
 }

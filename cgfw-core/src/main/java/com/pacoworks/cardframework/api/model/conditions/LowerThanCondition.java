@@ -1,10 +1,10 @@
 
-package com.pacoworks.cardframework.api.conditions;
+package com.pacoworks.cardframework.api.model.conditions;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pacoworks.cardframework.api.values.ICFWValue;
+import com.pacoworks.cardframework.api.model.values.ICFWValue;
 import lombok.ToString;
 
 import javax.annotation.Generated;

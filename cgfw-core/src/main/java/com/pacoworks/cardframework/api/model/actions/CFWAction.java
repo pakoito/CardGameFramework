@@ -1,8 +1,8 @@
 
-package com.pacoworks.cardframework.api.actions;
+package com.pacoworks.cardframework.api.model.actions;
 
 import com.fasterxml.jackson.annotation.*;
-import com.pacoworks.cardframework.api.conditions.ICFWCondition;
+import com.pacoworks.cardframework.api.model.conditions.ICFWCondition;
 
 import javax.annotation.Generated;
 import java.util.ArrayList;
@@ -49,5 +49,24 @@ public abstract class CFWAction implements ICFWAction {
     @JsonAnySetter
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
+    }
+
+    @Override
+    public void doAction() {
+        boolean passesConditions = true;
+        for (ICFWCondition cfwCondition: condition){
+            if (!cfwCondition.getResult()){
+                passesConditions = false;
+                break;
+            }
+        }
+        doAction(passesConditions);
+    }
+
+    protected abstract void doAction(boolean passesConditions);
+
+    @Override
+    public void undoAction() {
+
     }
 }

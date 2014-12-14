@@ -1,5 +1,5 @@
 
-package com.pacoworks.cardframework.api.values;
+package com.pacoworks.cardframework.api.model.values;
 
 import com.fasterxml.jackson.annotation.*;
 

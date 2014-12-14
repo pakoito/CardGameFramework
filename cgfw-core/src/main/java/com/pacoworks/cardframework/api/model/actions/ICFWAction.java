@@ -1,5 +1,5 @@
 
-package com.pacoworks.cardframework.api.actions;
+package com.pacoworks.cardframework.api.model.actions;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

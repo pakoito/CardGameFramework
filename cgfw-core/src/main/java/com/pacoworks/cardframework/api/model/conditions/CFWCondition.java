@@ -1,5 +1,5 @@
 
-package com.pacoworks.cardframework.api.conditions;
+package com.pacoworks.cardframework.api.model.conditions;
 
 import com.fasterxml.jackson.annotation.*;
 

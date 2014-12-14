@@ -1,5 +1,5 @@
 
-package com.pacoworks.cardframework.api.actions;
+package com.pacoworks.cardframework.api.model.actions;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,7 +21,7 @@ public class SetWinnerAction extends CFWAction {
     private String target;
 
     @Override
-    public void doAction() {
+    public void doAction(boolean passesConditions) {
     }
 
     @Override

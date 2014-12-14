@@ -1,10 +1,9 @@
 
-package com.pacoworks.cardframework.api.actions;
+package com.pacoworks.cardframework.api.model.values;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pacoworks.cardframework.api.values.ICFWValue;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -12,17 +11,17 @@ import javax.annotation.Generated;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-        "type", "target", "amount"
+        "type", "target", "attribute"
 })
 @ToString
-public class DrawHiddenAction extends CFWAction {
-    public static final String ACTION_NAME = "draw_hidden";
+public class PlayerAttributeValue extends CFWValue {
+    public static final String VALUE_NAME = "player_attribute";
 
     @JsonProperty("target")
     private String target;
 
-    @JsonProperty("amount")
-    private ICFWValue amount;
+    @JsonProperty("value")
+    private String attribute;
 
     /**
      * @return The target
@@ -41,28 +40,22 @@ public class DrawHiddenAction extends CFWAction {
     }
 
     /**
-     * @return The amount
+     * @return The value
      */
-    @JsonProperty("amount")
-    public ICFWValue getAmount() {
-        return amount;
+    @JsonProperty("attribute")
+    public String getAttribute() {
+        return attribute;
     }
 
     /**
-     * @param amount The amount
+     * @param value The value
      */
-    @JsonProperty("amount")
-    public void setAmount(ICFWValue amount) {
-        this.amount = amount;
+    @JsonProperty("attribute")
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
     }
 
-    @Override
-    public void doAction() {
-
-    }
-
-    @Override
-    public void undoAction() {
-
+    public Float getValue() {
+        return 0f;
     }
 }

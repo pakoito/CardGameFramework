@@ -1,4 +1,4 @@
-package com.pacoworks.cardframework.api.conditions;
+package com.pacoworks.cardframework.api.model.conditions;
 
 /**
  * Created by Paco on 14/12/2014.

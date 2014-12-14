@@ -1,11 +1,11 @@
 
-package com.pacoworks.cardframework.api.actions;
+package com.pacoworks.cardframework.api.model.actions;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pacoworks.cardframework.api.values.ICFWValue;
-import com.pacoworks.cardframework.api.values.NumericalValue;
+import com.pacoworks.cardframework.api.model.values.ICFWValue;
+import com.pacoworks.cardframework.api.model.values.NumericalValue;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -58,7 +58,7 @@ public class DrawAction extends CFWAction {
     }
 
     @Override
-    public void doAction() {
+    public void doAction(boolean passesConditions) {
     }
 
     @Override
