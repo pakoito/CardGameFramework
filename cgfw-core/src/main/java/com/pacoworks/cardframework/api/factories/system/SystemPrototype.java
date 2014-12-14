@@ -22,10 +22,15 @@ public class SystemPrototype extends BasePhaseSystem {
     @Override
     protected void process(Entity e) {
         for (CFWState state : systemDef.getStates()) {
+            boolean passesConditions = true;
             for (ICFWCondition condition : state.getCondition()) {
                 if (!condition.getResult()) {
-                    continue;
+                    passesConditions = false;
+                    break;
                 }
+            }
+            if (!passesConditions){
+                continue;
             }
             for (ICFWAction action : state.getActions()) {
                 action.doAction();

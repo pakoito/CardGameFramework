@@ -1,4 +1,3 @@
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pacoworks.cardframework.api.factories.system.SystemFactory;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 
@@ -14,9 +13,8 @@ public class SystemTest {
 
     public static void main(String[] args) {
         oldMethod();
-        ObjectMapper mapper = new ObjectMapper();
         try {
-            BasePhaseSystem system = SystemFactory.create(SystemTest.class.getResource("dealhidden.json"));
+            BasePhaseSystem system = SystemFactory.create(SystemTest.class.getResource("playerchoice.json"));
             system.fakeProcess();
         } catch (IOException e) {
             e.printStackTrace();
