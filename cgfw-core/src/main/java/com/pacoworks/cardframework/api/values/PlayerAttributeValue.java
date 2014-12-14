@@ -13,6 +13,8 @@ import javax.annotation.Generated;
         "type", "target", "value"
 })
 public class PlayerAttributeValue {
+    public static final String VALUE_NAME = "player_attribute";
+
     @JsonProperty("target")
     private String target;
 

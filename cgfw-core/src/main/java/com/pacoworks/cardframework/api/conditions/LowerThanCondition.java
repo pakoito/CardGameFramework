@@ -14,6 +14,8 @@ import javax.annotation.Generated;
         "type", "left", "right"
 })
 public class LowerThanCondition extends CFWCondition {
+    public static final String CONDITION_NAME = "lower_than";
+
     @JsonProperty("left")
     private ICFWNumericalValue left;
 

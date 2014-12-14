@@ -13,6 +13,8 @@ import javax.annotation.Generated;
         "type", "value"
 })
 public class InputKeyCondition extends CFWCondition {
+    public static final String CONDITION_NAME = "input_key";
+
     @JsonProperty("value")
     private String value;
 

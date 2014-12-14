@@ -12,6 +12,8 @@ import javax.annotation.Generated;
         "target", "condition"
 })
 public class DeclareWinnerAction extends CFWAction {
+        public static final String ACTION_NAME = "declare_winner";
+
         @Override
         public void doAction() {
 

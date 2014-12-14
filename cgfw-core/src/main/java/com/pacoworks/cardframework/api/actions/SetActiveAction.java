@@ -13,16 +13,16 @@ import javax.annotation.Generated;
         "target", "condition"
 })
 public class SetActiveAction extends CFWAction {
+    public static final String ACTION_NAME = "set_active";
+
     @JsonProperty("target")
     private String target;
 
     @Override
     public void doAction() {
-
     }
 
     @Override
     public void undoAction() {
-
     }
 }

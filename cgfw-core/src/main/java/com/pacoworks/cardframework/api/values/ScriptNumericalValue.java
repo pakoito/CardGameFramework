@@ -15,6 +15,8 @@ import java.util.List;
         "type", "params", "script"
 })
 public class ScriptNumericalValue extends CFWValue implements ICFWNumericalValue {
+    public static final String VALUE_NAME = "script_value";
+
     @JsonProperty("params")
     private List<String> params = new ArrayList<String>();
 

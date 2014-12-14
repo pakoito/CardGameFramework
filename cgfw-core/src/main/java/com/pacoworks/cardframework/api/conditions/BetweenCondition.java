@@ -16,6 +16,8 @@ import java.util.List;
         "value", "ceil_ex", "floor_ex"
 })
 public class BetweenCondition extends CFWCondition {
+    public static final String CONDITION_NAME = "between";
+
     @JsonProperty("value")
     private ICFWNumericalValue value;
 

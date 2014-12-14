@@ -13,16 +13,16 @@ import javax.annotation.Generated;
         "target", "condition"
 })
 public class SetWinnerAction extends CFWAction {
+    public static final String ACTION_NAME = "set_winner";
+
     @JsonProperty("target")
     private String target;
 
     @Override
     public void doAction() {
-
     }
 
     @Override
     public void undoAction() {
-
     }
 }

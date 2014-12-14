@@ -14,6 +14,8 @@ import javax.annotation.Generated;
         "type", "target", "amount"
 })
 public class DrawAction extends CFWAction {
+    public static final String ACTION_NAME = "draw";
+
     @JsonProperty("target")
     private String target;
 
@@ -54,11 +56,9 @@ public class DrawAction extends CFWAction {
 
     @Override
     public void doAction() {
-
     }
 
     @Override
     public void undoAction() {
-
     }
 }

@@ -15,6 +15,8 @@ import java.util.List;
         "type", "params", "script"
 })
 public class ScriptCondition extends CFWCondition {
+    public static final String CONDITION_NAME = "script_condition";
+
     @JsonProperty("params")
     private List<String> params = new ArrayList<String>();
 

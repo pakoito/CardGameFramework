@@ -13,6 +13,8 @@ import javax.annotation.Generated;
         "type", "value"
 })
 public class NumericalValue extends CFWValue implements ICFWNumericalValue {
+    public static final String VALUE_NAME = "numerical";
+
     @JsonProperty("value")
     private float value;
 

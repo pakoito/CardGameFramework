@@ -14,6 +14,8 @@ import javax.annotation.Generated;
         "type", "target", "amount"
 })
 public class DrawHiddenAction extends CFWAction {
+    public static final String ACTION_NAME = "draw_hidden";
+
     @JsonProperty("target")
     private String target;
 

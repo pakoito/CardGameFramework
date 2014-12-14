@@ -14,6 +14,8 @@ import javax.annotation.Generated;
         "type", "left", "right"
 })
 public class BiggerThanCondition extends CFWCondition {
+    public static final String CONDITION_NAME = "bigger_than";
+
     @JsonProperty("left")
     private ICFWNumericalValue left;
 
