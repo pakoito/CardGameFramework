@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.actions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 
@@ -12,6 +13,7 @@ import javax.annotation.Generated;
 @JsonPropertyOrder({
         "target", "condition"
 })
+@ToString
 public class SetWinnerAction extends CFWAction {
     public static final String ACTION_NAME = "set_winner";
 

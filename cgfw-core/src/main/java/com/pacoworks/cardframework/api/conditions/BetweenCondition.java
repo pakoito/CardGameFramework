@@ -4,7 +4,8 @@ package com.pacoworks.cardframework.api.conditions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pacoworks.cardframework.api.values.ICFWNumericalValue;
+import com.pacoworks.cardframework.api.values.ICFWValue;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 import java.util.ArrayList;
@@ -15,23 +16,24 @@ import java.util.List;
 @JsonPropertyOrder({
         "value", "ceil_ex", "floor_ex"
 })
+@ToString
 public class BetweenCondition extends CFWCondition {
     public static final String CONDITION_NAME = "between";
 
     @JsonProperty("value")
-    private ICFWNumericalValue value;
+    private ICFWValue value;
 
     @JsonProperty("ceil_ex")
-    private List<ICFWNumericalValue> ceilEx = new ArrayList<ICFWNumericalValue>();
+    private List<ICFWValue> ceilEx = new ArrayList<ICFWValue>();
 
     @JsonProperty("floor_ex")
-    private List<ICFWNumericalValue> floorEx = new ArrayList<ICFWNumericalValue>();
+    private List<ICFWValue> floorEx = new ArrayList<ICFWValue>();
 
     /**
      * @return The value
      */
     @JsonProperty("value")
-    public ICFWNumericalValue getValue() {
+    public ICFWValue getValue() {
         return value;
     }
 
@@ -39,7 +41,7 @@ public class BetweenCondition extends CFWCondition {
      * @param value The value
      */
     @JsonProperty("value")
-    public void setValue(ICFWNumericalValue value) {
+    public void setValue(ICFWValue value) {
         this.value = value;
     }
 
@@ -47,7 +49,7 @@ public class BetweenCondition extends CFWCondition {
      * @return The ceilEx
      */
     @JsonProperty("ceil_ex")
-    public List<ICFWNumericalValue> getCeilEx() {
+    public List<ICFWValue> getCeilEx() {
         return ceilEx;
     }
 
@@ -55,7 +57,7 @@ public class BetweenCondition extends CFWCondition {
      * @param ceilEx The ceil_ex
      */
     @JsonProperty("ceil_ex")
-    public void setCeilEx(List<ICFWNumericalValue> ceilEx) {
+    public void setCeilEx(List<ICFWValue> ceilEx) {
         this.ceilEx = ceilEx;
     }
 
@@ -63,7 +65,7 @@ public class BetweenCondition extends CFWCondition {
      * @return The floorEx
      */
     @JsonProperty("floor_ex")
-    public List<ICFWNumericalValue> getFloorEx() {
+    public List<ICFWValue> getFloorEx() {
         return floorEx;
     }
 
@@ -71,7 +73,7 @@ public class BetweenCondition extends CFWCondition {
      * @param floorEx The floor_ex
      */
     @JsonProperty("floor_ex")
-    public void setFloorEx(List<ICFWNumericalValue> floorEx) {
+    public void setFloorEx(List<ICFWValue> floorEx) {
         this.floorEx = floorEx;
     }
 

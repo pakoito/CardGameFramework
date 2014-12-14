@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api;
 import com.fasterxml.jackson.annotation.*;
 import com.pacoworks.cardframework.api.actions.ICFWAction;
 import com.pacoworks.cardframework.api.conditions.ICFWCondition;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ import java.util.Map;
 @JsonPropertyOrder({
         "condition", "action", "next", "priority"
 })
-public class State {
+@ToString
+public class CFWState {
     @JsonProperty("condition")
     private List<ICFWCondition> condition = new ArrayList<ICFWCondition>();
 

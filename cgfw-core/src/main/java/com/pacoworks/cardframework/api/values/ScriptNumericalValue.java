@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.values;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 import java.util.ArrayList;
@@ -14,8 +15,9 @@ import java.util.List;
 @JsonPropertyOrder({
         "type", "params", "script"
 })
-public class ScriptNumericalValue extends CFWValue implements ICFWNumericalValue {
-    public static final String VALUE_NAME = "script_value";
+@ToString
+public class ScriptNumericalValue extends CFWValue {
+    public static final String VALUE_NAME = "script_numerical";
 
     @JsonProperty("params")
     private List<String> params = new ArrayList<String>();
@@ -42,7 +44,7 @@ public class ScriptNumericalValue extends CFWValue implements ICFWNumericalValue
     /**
      * @return The value
      */
-    @JsonProperty("value")
+    @JsonProperty("script")
     public String getScript() {
         return script;
     }
@@ -50,7 +52,7 @@ public class ScriptNumericalValue extends CFWValue implements ICFWNumericalValue
     /**
      * @param value The value
      */
-    @JsonProperty("value")
+    @JsonProperty("script")
     public void setScript(String script) {
         this.script = script;
     }

@@ -14,5 +14,5 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = ScriptNumericalValue.class, name = ScriptNumericalValue.VALUE_NAME)
 })
 public interface ICFWValue {
-    Object getValue();
+    Float getValue();
 }

@@ -2,13 +2,13 @@
 package com.pacoworks.cardframework.api.actions;
 
 import com.fasterxml.jackson.annotation.*;
+import com.pacoworks.cardframework.api.conditions.ICFWCondition;
 
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.locks.Condition;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
@@ -20,7 +20,7 @@ public abstract class CFWAction implements ICFWAction {
     private String type;
 
     @JsonProperty("condition")
-    private List<Condition> condition = new ArrayList<Condition>();
+    private List<ICFWCondition> condition = new ArrayList<ICFWCondition>();
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -29,7 +29,7 @@ public abstract class CFWAction implements ICFWAction {
      * @return The condition
      */
     @JsonProperty("condition")
-    public List<Condition> getCondition() {
+    public List<ICFWCondition> getCondition() {
         return condition;
     }
 
@@ -37,7 +37,7 @@ public abstract class CFWAction implements ICFWAction {
      * @param condition The condition
      */
     @JsonProperty("condition")
-    public void setCondition(List<Condition> condition) {
+    public void setCondition(List<ICFWCondition> condition) {
         this.condition = condition;
     }
 

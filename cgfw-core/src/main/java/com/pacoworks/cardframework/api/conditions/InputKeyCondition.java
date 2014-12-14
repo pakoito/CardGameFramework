@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.conditions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 
@@ -12,6 +13,7 @@ import javax.annotation.Generated;
 @JsonPropertyOrder({
         "type", "value"
 })
+@ToString
 public class InputKeyCondition extends CFWCondition {
     public static final String CONDITION_NAME = "input_key";
 

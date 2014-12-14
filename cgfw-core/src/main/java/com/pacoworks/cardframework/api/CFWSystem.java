@@ -2,6 +2,7 @@
 package com.pacoworks.cardframework.api;
 
 import com.fasterxml.jackson.annotation.*;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 import java.util.ArrayList;
@@ -14,7 +15,8 @@ import java.util.Map;
 @JsonPropertyOrder({
         "type", "name", "target_entities", "fsm"
 })
-public class System {
+@ToString
+public class CFWSystem {
     @JsonProperty("type")
     private String type;
 
@@ -25,7 +27,7 @@ public class System {
     private String targetEntities;
 
     @JsonProperty("fsm")
-    private List<State> fsm = new ArrayList<State>();
+    private List<CFWState> fsm = new ArrayList<CFWState>();
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -82,7 +84,7 @@ public class System {
      * @return The fsm
      */
     @JsonProperty("fsm")
-    public List<State> getState() {
+    public List<CFWState> getState() {
         return fsm;
     }
 
@@ -90,7 +92,7 @@ public class System {
      * @param fsm The fsm
      */
     @JsonProperty("fsm")
-    public void setState(List<State> fsm) {
+    public void setState(List<CFWState> fsm) {
         this.fsm = fsm;
     }
 

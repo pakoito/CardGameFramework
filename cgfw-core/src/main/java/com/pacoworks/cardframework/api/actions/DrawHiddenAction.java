@@ -4,7 +4,8 @@ package com.pacoworks.cardframework.api.actions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pacoworks.cardframework.api.values.NumericalValue;
+import com.pacoworks.cardframework.api.values.ICFWValue;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 
@@ -13,6 +14,7 @@ import javax.annotation.Generated;
 @JsonPropertyOrder({
         "type", "target", "amount"
 })
+@ToString
 public class DrawHiddenAction extends CFWAction {
     public static final String ACTION_NAME = "draw_hidden";
 
@@ -20,7 +22,7 @@ public class DrawHiddenAction extends CFWAction {
     private String target;
 
     @JsonProperty("amount")
-    private NumericalValue amount;
+    private ICFWValue amount;
 
     /**
      * @return The target
@@ -42,7 +44,7 @@ public class DrawHiddenAction extends CFWAction {
      * @return The amount
      */
     @JsonProperty("amount")
-    public NumericalValue getAmount() {
+    public ICFWValue getAmount() {
         return amount;
     }
 
@@ -50,7 +52,7 @@ public class DrawHiddenAction extends CFWAction {
      * @param amount The amount
      */
     @JsonProperty("amount")
-    public void setAmount(NumericalValue amount) {
+    public void setAmount(ICFWValue amount) {
         this.amount = amount;
     }
 

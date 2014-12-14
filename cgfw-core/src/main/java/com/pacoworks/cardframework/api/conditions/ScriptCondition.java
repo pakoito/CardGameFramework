@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.conditions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 @JsonPropertyOrder({
         "type", "params", "script"
 })
+@ToString
 public class ScriptCondition extends CFWCondition {
     public static final String CONDITION_NAME = "script_condition";
 
@@ -42,7 +44,7 @@ public class ScriptCondition extends CFWCondition {
     /**
      * @return The value
      */
-    @JsonProperty("value")
+    @JsonProperty("script")
     public String getScript() {
         return script;
     }
@@ -50,7 +52,7 @@ public class ScriptCondition extends CFWCondition {
     /**
      * @param value The value
      */
-    @JsonProperty("value")
+    @JsonProperty("script")
     public void setScript(String script) {
         this.script = script;
     }

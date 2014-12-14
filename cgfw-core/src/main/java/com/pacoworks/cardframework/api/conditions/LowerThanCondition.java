@@ -4,7 +4,8 @@ package com.pacoworks.cardframework.api.conditions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pacoworks.cardframework.api.values.ICFWNumericalValue;
+import com.pacoworks.cardframework.api.values.ICFWValue;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 
@@ -13,20 +14,21 @@ import javax.annotation.Generated;
 @JsonPropertyOrder({
         "type", "left", "right"
 })
+@ToString
 public class LowerThanCondition extends CFWCondition {
     public static final String CONDITION_NAME = "lower_than";
 
     @JsonProperty("left")
-    private ICFWNumericalValue left;
+    private ICFWValue left;
 
     @JsonProperty("right")
-    private ICFWNumericalValue right;
+    private ICFWValue right;
 
     /**
      * @return The left
      */
     @JsonProperty("left")
-    public ICFWNumericalValue getLeft() {
+    public ICFWValue getLeft() {
         return left;
     }
 
@@ -34,7 +36,7 @@ public class LowerThanCondition extends CFWCondition {
      * @param left The left
      */
     @JsonProperty("left")
-    public void setLeft(ICFWNumericalValue left) {
+    public void setLeft(ICFWValue left) {
         this.left = left;
     }
 
@@ -42,7 +44,7 @@ public class LowerThanCondition extends CFWCondition {
      * @return The right
      */
     @JsonProperty("right")
-    public ICFWNumericalValue getRight() {
+    public ICFWValue getRight() {
         return right;
     }
 
@@ -50,7 +52,7 @@ public class LowerThanCondition extends CFWCondition {
      * @param right The right
      */
     @JsonProperty("right")
-    public void setRight(ICFWNumericalValue right) {
+    public void setRight(ICFWValue right) {
         this.right = right;
     }
 

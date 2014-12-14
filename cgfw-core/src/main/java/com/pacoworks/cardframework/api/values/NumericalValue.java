@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.values;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.ToString;
 
 import javax.annotation.Generated;
 
@@ -12,7 +13,8 @@ import javax.annotation.Generated;
 @JsonPropertyOrder({
         "type", "value"
 })
-public class NumericalValue extends CFWValue implements ICFWNumericalValue {
+@ToString
+public class NumericalValue extends CFWValue {
     public static final String VALUE_NAME = "numerical";
 
     @JsonProperty("value")
