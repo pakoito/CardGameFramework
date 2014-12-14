@@ -26,7 +26,7 @@ public class CFWState {
     private List<ICFWAction> action = new ArrayList<ICFWAction>();
 
     @JsonProperty("next")
-    private String next;
+    private List<String> next = new ArrayList<String>();
 
     @JsonProperty("priority")
     private Integer priority;
@@ -70,7 +70,7 @@ public class CFWState {
      * @return The next
      */
     @JsonProperty("next")
-    public String getNext() {
+    public List<String> getNext() {
         return next;
     }
 
@@ -78,7 +78,7 @@ public class CFWState {
      * @param next The next
      */
     @JsonProperty("next")
-    public void setNext(String next) {
+    public void setNext(List<String> next) {
         this.next = next;
     }
 
