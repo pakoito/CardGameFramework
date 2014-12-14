@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = NumericalValue.class, name = NumericalValue.VALUE_NAME),
         @JsonSubTypes.Type(value = PlayerAttributeValue.class, name = PlayerAttributeValue.VALUE_NAME),
+        @JsonSubTypes.Type(value = GlobalValue.class, name = GlobalValue.VALUE_NAME),
         @JsonSubTypes.Type(value = ScriptNumericalValue.class, name = ScriptNumericalValue.VALUE_NAME)
 })
 public interface ICFWValue {

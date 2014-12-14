@@ -1,12 +1,14 @@
 
 package com.pacoworks.cardframework.framework;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import com.pacoworks.cardframework.api.util.NamingUtils;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.Accessors;
@@ -16,6 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 import com.artemis.Entity;
 import com.artemis.EntitySystem;
 import com.artemis.World;
+import com.pacoworks.cardframework.api.constants.CFWConstants;
+import com.pacoworks.cardframework.api.factories.system.SystemFactory;
+import com.pacoworks.cardframework.api.model.CFWSystem;
+import com.pacoworks.cardframework.api.model.components.CFWComponent;
+import com.pacoworks.cardframework.api.util.WorldFetcher;
 import com.pacoworks.cardframework.dependencies.GameSystemModule;
 import com.pacoworks.cardframework.dependencies.LuaJModule;
 import com.pacoworks.cardframework.dependencies.WorldModule;
@@ -39,7 +46,9 @@ public class CardgameFramework {
             GameSystemModule.class, LuaJModule.class, WorldModule.class
     })
     public interface CardgameFrameworkComponent {
-        void inject(CardgameFramework framework);
+        void inject(CardgameFramework injectee);
+
+        void inject(WorldFetcher injectee);
     }
 
     private Entity mGame;
@@ -62,22 +71,58 @@ public class CardgameFramework {
     @Inject
     protected LuaJEngine mLuaEngine;
 
-    private CardgameFrameworkComponent componentInjector;
+    @Getter
+    @Accessors(prefix = "s")
+    private static CardgameFrameworkComponent sComponentInjector;
 
     // TODO starting phase, passive system list, active system list
     // TODO player/team configuration
-    @Builder(builderClassName = "CFBuilder")
-    private CardgameFramework(@NonNull IVictoryDecider victoryChecker, @NonNull IEventCommander eventCommander,
-            @NonNull Iterable<BasePhaseSystem> phaseSystems, @NonNull BasePhaseSystem startingSystem,
-            Iterable<EntitySystem> otherSystems, String scriptsPath, boolean debuggableScripts) {
-        componentInjector = Dagger_CardgameFramework$CardgameFrameworkComponent
+    // @Builder(builderClassName = "CFBuilder")
+    private CardgameFramework(@NonNull IVictoryDecider victoryChecker,
+            @NonNull IEventCommander eventCommander,
+            @NonNull Iterable<BasePhaseSystem> phaseSystems,
+            @NonNull BasePhaseSystem startingSystem, Iterable<EntitySystem> otherSystems,
+            String scriptsPath, boolean debuggableScripts) {
+        sComponentInjector = Dagger_CardgameFramework$CardgameFrameworkComponent
                 .builder()
                 .gameSystemModule(new GameSystemModule(victoryChecker, eventCommander))
                 .luaJModule(
                         new LuaJModule((scriptsPath == null) ? "" : scriptsPath, debuggableScripts))
                 .worldModule(new WorldModule(phaseSystems, otherSystems)).build();
-        componentInjector.inject(this);
+        sComponentInjector.inject(this);
         mWorld.initialize();
+        EntityFactory.createGame(mWorld, startingSystem);
+        isStarted.set(true);
+        mCommander.postAnyEvent(EventGameStarted.create());
+        log.info("CardFramework started");
+    }
+
+    // TODO starting phase, passive system list, active system list
+    // TODO player/team configuration
+    @Builder(builderClassName = "CFWScriptsBuilder")
+    private CardgameFramework(@NonNull IVictoryDecider victoryChecker,
+            @NonNull IEventCommander eventCommander, @NonNull Iterable<CFWSystem> systemsFiles,
+            @NonNull String startingSystemName, @NonNull Iterable<Class <? extends CFWComponent>> customComponents,
+            String scriptsPath, boolean debuggableScripts) {
+        for (Class <? extends CFWComponent> component: customComponents){
+            CFWConstants.CustomComponents.registerComponent(NamingUtils.getNameForComponentClass(component), component);
+        }
+        List<BasePhaseSystem> phaseSystems = new ArrayList<BasePhaseSystem>();
+        for (CFWSystem systemPath : systemsFiles) {
+            BasePhaseSystem basePhaseSystem = SystemFactory.create(systemPath);
+            phaseSystems.add(basePhaseSystem);
+            CFWConstants.CustomSystems.registerSystem(systemPath.getName(), basePhaseSystem);
+        }
+
+        sComponentInjector = Dagger_CardgameFramework$CardgameFrameworkComponent
+                .builder()
+                .gameSystemModule(new GameSystemModule(victoryChecker, eventCommander))
+                .luaJModule(
+                        new LuaJModule((scriptsPath == null) ? "" : scriptsPath, debuggableScripts))
+                .worldModule(new WorldModule(phaseSystems, null)).build();
+        sComponentInjector.inject(this);
+        mWorld.initialize();
+        BasePhaseSystem startingSystem = CFWConstants.CustomSystems.getSystem(startingSystemName);
         EntityFactory.createGame(mWorld, startingSystem);
         isStarted.set(true);
         mCommander.postAnyEvent(EventGameStarted.create());

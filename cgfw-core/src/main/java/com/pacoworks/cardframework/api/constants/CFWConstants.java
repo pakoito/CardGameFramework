@@ -1,7 +1,7 @@
 
 package com.pacoworks.cardframework.api.constants;
 
-import com.artemis.Component;
+import com.pacoworks.cardframework.api.model.components.CFWComponent;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 
 import java.util.HashMap;
@@ -18,17 +18,19 @@ public class CFWConstants {
         public static final String CURRENT_PLAYER = "current_player";
 
         public static final String UNKNOWN = "";
+
+        public static final String WINNER_PLAYER = "winner_player";
     }
 
     // FIXME ugly global
     public static class CustomComponents {
-        private static final HashMap<String, Class<? extends Component>> CUSTOM_COMPONENTS = new HashMap<String, Class<? extends Component>>();
+        private static final HashMap<String, Class<? extends CFWComponent>> CUSTOM_COMPONENTS = new HashMap<String, Class<? extends CFWComponent>>();
 
-        public static void registerComponent(String key, Class<? extends Component> clazz) {
+        public static void registerComponent(String key, Class<? extends CFWComponent> clazz) {
             CUSTOM_COMPONENTS.put(key, clazz);
         }
 
-        public static Class<? extends Component> getComponent(String key) {
+        public static Class<? extends CFWComponent> getComponentClass(String key) {
             return CUSTOM_COMPONENTS.get(key);
         }
     }
@@ -43,6 +45,18 @@ public class CFWConstants {
 
         public static BasePhaseSystem getSystem(String key) {
             return CUSTOM_SYSTEMS.get(key);
+        }
+    }
+
+    public static class GlobalValues {
+        private static final HashMap<String, Float> GLOBAL_VALUES = new HashMap<String,Float>();
+
+        public static void setValue(String key, Float system) {
+            GLOBAL_VALUES.put(key, system);
+        }
+
+        public static Float getValue(String key) {
+            return GLOBAL_VALUES.get(key);
         }
     }
 }

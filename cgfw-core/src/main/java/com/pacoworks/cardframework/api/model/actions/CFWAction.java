@@ -1,6 +1,7 @@
 
 package com.pacoworks.cardframework.api.model.actions;
 
+import com.artemis.Entity;
 import com.fasterxml.jackson.annotation.*;
 import com.pacoworks.cardframework.api.model.conditions.ICFWCondition;
 
@@ -52,7 +53,7 @@ public abstract class CFWAction implements ICFWAction {
     }
 
     @Override
-    public void doAction() {
+    public void doAction(Entity entity) {
         boolean passesConditions = true;
         for (ICFWCondition cfwCondition: condition){
             if (!cfwCondition.getResult()){
@@ -60,10 +61,10 @@ public abstract class CFWAction implements ICFWAction {
                 break;
             }
         }
-        doAction(passesConditions);
+        doAction(passesConditions, entity);
     }
 
-    protected abstract void doAction(boolean passesConditions);
+    protected abstract void doAction(boolean passesConditions, Entity entity);
 
     @Override
     public void undoAction() {

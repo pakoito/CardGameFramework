@@ -64,6 +64,6 @@ public class LowerThanCondition extends CFWCondition {
         if (right == null){
             return true;
         }
-        return left.getValue() > right.getValue();
+        return left.getValue() < right.getValue();
     }
 }

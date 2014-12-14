@@ -5,6 +5,7 @@ import com.artemis.Aspect;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pacoworks.cardframework.api.constants.CFWConstants;
 import com.pacoworks.cardframework.api.model.CFWSystem;
+import com.pacoworks.cardframework.components.Player;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import lombok.NonNull;
 
@@ -39,13 +40,10 @@ public class SystemFactory {
 
     private static Aspect getAspectForString(@NonNull String targetEntities){
         if (CFWConstants.PlayerGroups.ALL_PLAYERS.equals(targetEntities)){
-            return Aspect.getAspectForAll();
-        }
-        if (CFWConstants.PlayerGroups.CURRENT_PLAYER.equals(targetEntities)){
-            return Aspect.getAspectForAll();
+            return Aspect.getAspectForAll(Player.class);
         }
         if (CFWConstants.PlayerGroups.SELECTED_PLAYER.equals(targetEntities)){
-            return Aspect.getAspectForAll();
+            return Aspect.getAspectForAll(Player.class);
         }
         return Aspect.getEmpty();
     }

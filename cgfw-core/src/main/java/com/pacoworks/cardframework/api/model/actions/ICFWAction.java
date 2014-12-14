@@ -1,6 +1,7 @@
 
 package com.pacoworks.cardframework.api.model.actions;
 
+import com.artemis.Entity;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = DrawAction.class, name = DrawAction.ACTION_NAME)
 })
 public interface ICFWAction {
-    void doAction();
+    void doAction(Entity entity);
 
     void undoAction();
 }

@@ -1,9 +1,15 @@
 
 package com.pacoworks.cardframework.api.model.values;
 
+import com.artemis.Entity;
+import com.artemis.World;
+import com.artemis.managers.TagManager;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.pacoworks.cardframework.api.constants.CFWConstants;
+import com.pacoworks.cardframework.api.model.components.CFWComponent;
+import com.pacoworks.cardframework.api.util.WorldFetcher;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -56,6 +62,15 @@ public class PlayerAttributeValue extends CFWValue {
     }
 
     public Float getValue() {
-        return 0f;
+        World world = WorldFetcher.fetchWorld();
+        TagManager tgm = world.getManager(TagManager.class);
+        Entity entity = tgm.getEntity(target);
+        Float value = 0f;
+        if (entity != null){
+            Class<? extends CFWComponent> componentClass = CFWConstants.CustomComponents.getComponentClass(attribute);
+            CFWComponent valueHolder = world.getMapper(componentClass).getSafe(entity);
+            value = valueHolder.getValue();
+        }
+        return value;
     }
 }
