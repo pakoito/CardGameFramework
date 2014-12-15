@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.model.conditions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.pacoworks.cardframework.api.CFWContext;
 import com.pacoworks.cardframework.api.model.values.ICFWValue;
 import lombok.ToString;
 
@@ -57,10 +58,10 @@ public class NotEqualsCondition extends CFWCondition {
     }
 
     @Override
-    public boolean getResult() {
+    public boolean getResult(CFWContext cfwContext) {
         if (left == null || right == null) {
             return false;
         }
-        return left.getValue() != right.getValue();
+        return left.getValue(cfwContext) != right.getValue(cfwContext);
     }
 }

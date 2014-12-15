@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.model.conditions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.pacoworks.cardframework.api.CFWContext;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -58,7 +59,7 @@ public class ScriptCondition extends CFWCondition {
     }
 
     @Override
-    public boolean getResult() {
+    public boolean getResult(CFWContext cfwContext) {
         return false;
     }
 }

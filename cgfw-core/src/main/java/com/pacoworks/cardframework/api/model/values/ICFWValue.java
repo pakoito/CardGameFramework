@@ -3,6 +3,7 @@ package com.pacoworks.cardframework.api.model.values;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.pacoworks.cardframework.api.CFWContext;
 
 /**
  * Created by Paco on 14/12/2014. See LICENSE.md
@@ -15,5 +16,5 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = ScriptNumericalValue.class, name = ScriptNumericalValue.VALUE_NAME)
 })
 public interface ICFWValue {
-    Float getValue();
+    Float getValue(CFWContext cfwContext);
 }

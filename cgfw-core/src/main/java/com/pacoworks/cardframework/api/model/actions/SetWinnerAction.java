@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.pacoworks.cardframework.api.CFWConstants;
-import com.pacoworks.cardframework.api.util.WorldFetcher;
+import com.pacoworks.cardframework.api.CFWContext;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -28,11 +28,11 @@ public class SetWinnerAction extends CFWAction {
     private String target;
 
     @Override
-    public void doAction(boolean passesConditions) {
+    public void doAction(CFWContext cfwContext, boolean passesConditions) {
         if (!passesConditions){
             return;
         }
-        World world = WorldFetcher.fetchWorld();
+        World world = cfwContext.getWorld();
         TagManager tagManager = world.getManager(TagManager.class);
         oldWinner = tagManager.getEntity(CFWConstants.PlayerGroups.WINNER_PLAYER);
         Entity selectedEntity = tagManager.getEntity(target);
@@ -40,8 +40,8 @@ public class SetWinnerAction extends CFWAction {
     }
 
     @Override
-    public void undoAction() {
-        World world = WorldFetcher.fetchWorld();
+    public void undoAction(CFWContext cfwContext) {
+        World world = cfwContext.getWorld();
         TagManager tagManager = world.getManager(TagManager.class);
         tagManager.register(CFWConstants.PlayerGroups.WINNER_PLAYER, oldWinner);
     }

@@ -7,6 +7,7 @@ import com.pacoworks.cardframework.api.CFWConstants;
 import com.pacoworks.cardframework.api.model.CFWSystem;
 import com.pacoworks.cardframework.components.Player;
 import com.pacoworks.cardframework.components.UnpackedComponent;
+import com.pacoworks.cardframework.framework.CardgameFramework;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import lombok.NonNull;
 
@@ -21,20 +22,20 @@ public class SystemFactory {
     private SystemFactory() {
     }
 
-    public static BasePhaseSystem create(@NonNull URL filePath) throws IOException {
+    public static BasePhaseSystem create(CardgameFramework.CardgameFrameworkComponent injector, @NonNull URL filePath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CFWSystem cfwSystem = mapper.readValue(filePath, CFWSystem.class);
-        return create(cfwSystem);
+        return create(injector, cfwSystem);
     }
 
-    public static BasePhaseSystem create(@NonNull File file) throws IOException {
+    public static BasePhaseSystem create(CardgameFramework.CardgameFrameworkComponent injector, @NonNull File file) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CFWSystem cfwSystem = mapper.readValue(file, CFWSystem.class);
-        return create(cfwSystem);
+        return create(injector, cfwSystem);
     }
 
-    public static BasePhaseSystem create(@NonNull CFWSystem system){
-        SystemPrototype systemPrototype = new SystemPrototype(getAspectForString(system.getTargetEntities()));
+    public static BasePhaseSystem create(CardgameFramework.CardgameFrameworkComponent injector, @NonNull CFWSystem system){
+        SystemPrototype systemPrototype = new SystemPrototype(injector, getAspectForString(system.getTargetEntities()));
         systemPrototype.setCFWSystem(system);
         return systemPrototype;
     }

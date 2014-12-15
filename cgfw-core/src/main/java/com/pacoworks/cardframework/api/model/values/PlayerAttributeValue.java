@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.pacoworks.cardframework.api.CFWConstants;
+import com.pacoworks.cardframework.api.CFWContext;
 import com.pacoworks.cardframework.api.model.components.CFWComponent;
-import com.pacoworks.cardframework.api.util.WorldFetcher;
 import com.pacoworks.cardframework.components.UnpackedComponent;
 import lombok.ToString;
 
@@ -62,8 +62,8 @@ public class PlayerAttributeValue extends CFWValue {
         this.attribute = attribute;
     }
 
-    public Float getValue() {
-        World world = WorldFetcher.fetchWorld();
+    public Float getValue(CFWContext cfwContext) {
+        World world = cfwContext.getWorld();
         TagManager tgm = world.getManager(TagManager.class);
         Entity entity = tgm.getEntity(target);
         Float value = 0f;

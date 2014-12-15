@@ -7,6 +7,7 @@ package com.pacoworks.cardframework.api.model.conditions;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.pacoworks.cardframework.api.CFWContext;
 
 /**
  * Created by Paco on 14/12/2014. See LICENSE.md
@@ -22,5 +23,5 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = ScriptCondition.class, name = ScriptCondition.CONDITION_NAME)
 })
 public interface ICFWCondition {
-    boolean getResult();
+    boolean getResult(CFWContext cfwContext);
 }

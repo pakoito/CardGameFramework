@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.model.conditions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.pacoworks.cardframework.api.CFWContext;
 import com.pacoworks.cardframework.api.model.values.ICFWValue;
 import lombok.ToString;
 
@@ -78,17 +79,17 @@ public class BetweenCondition extends CFWCondition {
     }
 
     @Override
-    public boolean getResult() {
+    public boolean getResult(CFWContext cfwContext) {
         if (value == null) {
             return false;
         }
         for (ICFWValue floor: floorEx){
-            if (value.getValue() < floor.getValue()) {
+            if (value.getValue(cfwContext) < floor.getValue(cfwContext)) {
                 return false;
             }
         }
         for (ICFWValue ceil: ceilEx){
-            if (value.getValue() > ceil.getValue()) {
+            if (value.getValue(cfwContext) > ceil.getValue(cfwContext)) {
                 return false;
             }
         }

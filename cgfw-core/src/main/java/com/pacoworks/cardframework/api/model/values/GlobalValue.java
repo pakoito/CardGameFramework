@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.pacoworks.cardframework.api.CFWConstants;
+import com.pacoworks.cardframework.api.CFWContext;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -39,7 +40,7 @@ public class GlobalValue extends CFWValue {
 
 
     @Override
-    public Float getValue() {
+    public Float getValue(CFWContext cfwContext) {
         return CFWConstants.GlobalValues.getValue(name);
     }
 }

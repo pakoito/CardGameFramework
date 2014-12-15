@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.model.actions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.pacoworks.cardframework.api.CFWContext;
 import com.pacoworks.cardframework.api.model.values.ICFWValue;
 
 import javax.annotation.Generated;
@@ -60,7 +61,7 @@ public class PrintAction extends CFWAction {
     }
 
     @Override
-    public void doAction(boolean passesConditions) {
+    public void doAction(CFWContext cfwContext, boolean passesConditions) {
         if (!passesConditions){
             return;
         }
@@ -68,7 +69,7 @@ public class PrintAction extends CFWAction {
         if (elements.size() > 0) {
             for (int i = 0; i < elements.size(); i++) {
                 ICFWValue value = elements.get(i);
-                stringBuilder.append(value.getValue());
+                stringBuilder.append(value.getValue(cfwContext));
                 if (i + 1 != elements.size()) {
                     stringBuilder.append(" / ");
                 }
@@ -78,6 +79,6 @@ public class PrintAction extends CFWAction {
     }
 
     @Override
-    public void undoAction() {
+    public void undoAction(CFWContext cfwContext) {
     }
 }

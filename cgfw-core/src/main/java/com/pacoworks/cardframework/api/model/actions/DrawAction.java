@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.model.actions;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.pacoworks.cardframework.api.CFWContext;
 import com.pacoworks.cardframework.api.model.values.ICFWValue;
 import lombok.ToString;
 
@@ -57,13 +58,13 @@ public class DrawAction extends CFWAction {
     }
 
     @Override
-    public void doAction(boolean passesConditions) {
+    public void doAction(CFWContext cfwContext, boolean passesConditions) {
         if (!passesConditions){
             return;
         }
     }
 
     @Override
-    public void undoAction() {
+    public void undoAction(CFWContext cfwContext) {
     }
 }

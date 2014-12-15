@@ -4,6 +4,7 @@ package com.pacoworks.cardframework.api.model.values;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.pacoworks.cardframework.api.CFWContext;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -22,9 +23,10 @@ public class NumericalValue extends CFWValue {
 
     /**
      * @return The value
+     * @param cfwContext
      */
     @JsonProperty("value")
-    public Float getValue() {
+    public Float getValue(CFWContext cfwContext) {
         return value;
     }
 

@@ -2,6 +2,7 @@
 package com.pacoworks.cardframework.api.model.actions;
 
 import com.fasterxml.jackson.annotation.*;
+import com.pacoworks.cardframework.api.CFWContext;
 import com.pacoworks.cardframework.api.model.conditions.ICFWCondition;
 
 import javax.annotation.Generated;
@@ -52,21 +53,21 @@ public abstract class CFWAction implements ICFWAction {
     }
 
     @Override
-    public void doAction() {
+    public void doAction(CFWContext cfwContext) {
         boolean passesConditions = true;
         for (ICFWCondition cfwCondition: condition){
-            if (!cfwCondition.getResult()){
+            if (!cfwCondition.getResult(cfwContext)){
                 passesConditions = false;
                 break;
             }
         }
-        doAction(passesConditions);
+        doAction(cfwContext, passesConditions);
     }
 
-    protected abstract void doAction(boolean passesConditions);
+    protected abstract void doAction(CFWContext cfwContext, boolean passesConditions);
 
     @Override
-    public void undoAction() {
+    public void undoAction(CFWContext cfwContext) {
 
     }
 }

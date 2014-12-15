@@ -6,12 +6,15 @@ import com.artemis.Entity;
 import com.artemis.annotations.Wire;
 import com.artemis.managers.TagManager;
 import com.pacoworks.cardframework.api.CFWConstants;
+import com.pacoworks.cardframework.api.CFWContext;
 import com.pacoworks.cardframework.api.model.CFWState;
 import com.pacoworks.cardframework.api.model.CFWSystem;
 import com.pacoworks.cardframework.api.model.actions.ICFWAction;
 import com.pacoworks.cardframework.api.model.conditions.ICFWCondition;
+import com.pacoworks.cardframework.framework.CardgameFramework;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +23,9 @@ import java.util.List;
  */
 @Wire
 public class SystemPrototype extends BasePhaseSystem {
+    @Inject
+    protected CFWContext cfwContext;
+
     private TagManager tagManager;
 
     private CFWSystem systemDef;
@@ -38,8 +44,10 @@ public class SystemPrototype extends BasePhaseSystem {
         return systemDef;
     }
 
-    public SystemPrototype(Aspect aspect) {
+    public SystemPrototype(CardgameFramework.CardgameFrameworkComponent injector, Aspect aspect) {
         super(aspect);
+        injector.inject(this);
+
     }
 
     @Override
@@ -60,7 +68,7 @@ public class SystemPrototype extends BasePhaseSystem {
         for (CFWState state : systemDef.getStates()) {
             boolean passesConditions = true;
             for (ICFWCondition condition : state.getCondition()) {
-                if (!condition.getResult()) {
+                if (!condition.getResult(cfwContext)) {
                     passesConditions = false;
                     break;
                 }
@@ -69,7 +77,7 @@ public class SystemPrototype extends BasePhaseSystem {
                 continue;
             }
             for (ICFWAction action : state.getActions()) {
-                action.doAction();
+                action.doAction(cfwContext);
             }
             List<String> next = state.getNext();
             List<BasePhaseSystem> sanitizedSystemList = new ArrayList<BasePhaseSystem>();
