@@ -4,11 +4,11 @@
  * Disclosure, Use or Reproduction without the written authorization of TRGR is prohibited.
  */
 
-package com.pacoworks.cardframework.api.model.conditions;
+package com.pacoworks.cardframework.api;
 
 import com.artemis.World;
 
-public class Context {
+public class CFWContext {
 
     private final World world;
 
@@ -16,7 +16,7 @@ public class Context {
         return world;
     }
 
-    public Context(World world) {
+    public CFWContext(World world) {
         this.world = world;
     }
 }
