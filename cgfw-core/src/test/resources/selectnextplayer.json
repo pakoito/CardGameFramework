@@ -48,7 +48,7 @@
           "target": "current_player"
         }
       ],
-      "continue": false,
+      "finalize": true,
       "next": ["dealhidden"],
       "priority": 0
     },
