@@ -1,7 +1,6 @@
 
 package com.pacoworks.cardframework.api.model.actions;
 
-import com.artemis.Entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -58,7 +57,7 @@ public class DrawHiddenAction extends CFWAction {
     }
 
     @Override
-    public void doAction(boolean passesConditions, Entity entity) {
+    public void doAction(boolean passesConditions) {
 
     }
 

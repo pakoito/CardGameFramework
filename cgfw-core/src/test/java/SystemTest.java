@@ -24,7 +24,7 @@ public class SystemTest {
             List<CFWSystem> systems = new ArrayList<CFWSystem>();
             ObjectMapper mapper = new ObjectMapper();
             CFWSystem cfwSystem = mapper.readValue(
-                    SystemTest.class.getResource("selectnextplayer.json"), CFWSystem.class);
+                    SystemTest.class.getResource("playerchoice.json"), CFWSystem.class);
             systems.add(cfwSystem);
             List<Class<? extends CFWComponent>> customComponents = Arrays.asList(PlayerHandCount.class, PlayerPosition.class);
             CardgameFramework framework = CardgameFramework.builder().victoryChecker(new IVictoryDecider() {
@@ -32,7 +32,7 @@ public class SystemTest {
                 public boolean isVictoryCondition() {
                     return false;
                 }
-            }).systemsFiles(systems).startingSystemName("selectnextplayer").customComponents(customComponents)
+            }).systemsFiles(systems).startingSystemName("playerchoice").customComponents(customComponents)
                     .eventCommander(new IEventCommander() {
                         @Override
                         public void postAnyEvent(BaseEvent event) {

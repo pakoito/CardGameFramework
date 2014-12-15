@@ -4,10 +4,7 @@ package com.pacoworks.cardframework.dependencies;
 import com.artemis.EntitySystem;
 import com.artemis.World;
 import com.artemis.WorldConfiguration;
-import com.artemis.managers.GroupManager;
-import com.artemis.managers.PlayerManager;
-import com.artemis.managers.TagManager;
-import com.artemis.managers.TeamManager;
+import com.artemis.managers.*;
 import com.pacoworks.cardframework.eventbus.IEventCommander;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import com.pacoworks.cardframework.systems.GameSystem;
@@ -39,6 +36,7 @@ public class WorldModule {
         world.setManager(new TagManager());
         world.setManager(new TeamManager());
         world.setManager(new PlayerManager());
+        world.setManager(new UuidEntityManager());
         world.setSystem(gameSystem);
         for (BasePhaseSystem phaseSystem : phaseSystems) {
             world.setSystem(phaseSystem, true);

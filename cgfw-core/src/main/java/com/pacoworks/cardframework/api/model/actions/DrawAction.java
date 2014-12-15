@@ -1,12 +1,10 @@
 
 package com.pacoworks.cardframework.api.model.actions;
 
-import com.artemis.Entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.pacoworks.cardframework.api.model.values.ICFWValue;
-import com.pacoworks.cardframework.api.model.values.NumericalValue;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -54,12 +52,12 @@ public class DrawAction extends CFWAction {
      * @param amount The amount
      */
     @JsonProperty("amount")
-    public void setAmount(NumericalValue amount) {
+    public void setAmount(ICFWValue amount) {
         this.amount = amount;
     }
 
     @Override
-    public void doAction(boolean passesConditions, Entity entity) {
+    public void doAction(boolean passesConditions) {
     }
 
     @Override

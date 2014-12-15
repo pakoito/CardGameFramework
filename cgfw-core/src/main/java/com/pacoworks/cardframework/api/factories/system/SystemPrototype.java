@@ -65,7 +65,7 @@ public class SystemPrototype extends BasePhaseSystem {
                 continue;
             }
             for (ICFWAction action : state.getActions()) {
-                action.doAction(e);
+                action.doAction();
             }
             List<String> next = state.getNext();
             List<BasePhaseSystem> sanitizedSystemList = new ArrayList<BasePhaseSystem>();

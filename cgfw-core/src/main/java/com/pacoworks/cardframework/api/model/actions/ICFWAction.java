@@ -1,7 +1,6 @@
 
 package com.pacoworks.cardframework.api.model.actions;
 
-import com.artemis.Entity;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -13,11 +12,12 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = DeclareWinnerAction.class, name = DeclareWinnerAction.ACTION_NAME),
         @JsonSubTypes.Type(value = SetWinnerAction.class, name = SetWinnerAction.ACTION_NAME),
         @JsonSubTypes.Type(value = SetActiveAction.class, name = SetActiveAction.ACTION_NAME),
+        @JsonSubTypes.Type(value = PrintAction.class, name = PrintAction.ACTION_NAME),
         @JsonSubTypes.Type(value = DrawHiddenAction.class, name = DrawHiddenAction.ACTION_NAME),
         @JsonSubTypes.Type(value = DrawAction.class, name = DrawAction.ACTION_NAME)
 })
 public interface ICFWAction {
-    void doAction(Entity entity);
+    void doAction();
 
     void undoAction();
 }

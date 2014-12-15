@@ -28,14 +28,11 @@ public class SetWinnerAction extends CFWAction {
     private String target;
 
     @Override
-    public void doAction(boolean passesConditions, Entity entity) {
+    public void doAction(boolean passesConditions) {
         World world = WorldFetcher.fetchWorld();
         TagManager tagManager = world.getManager(TagManager.class);
         oldWinner = tagManager.getEntity(CFWConstants.PlayerGroups.WINNER_PLAYER);
-        Entity selectedEntity = entity;
-        if (CFWConstants.PlayerGroups.SELECTED_PLAYER.equals(target)) {
-            selectedEntity = tagManager.getEntity(CFWConstants.PlayerGroups.SELECTED_PLAYER);
-        }
+        Entity selectedEntity = tagManager.getEntity(target);
         tagManager.register(CFWConstants.PlayerGroups.WINNER_PLAYER, selectedEntity);
     }
 
