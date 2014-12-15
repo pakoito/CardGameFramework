@@ -113,7 +113,6 @@ public class CardgameFramework {
             phaseSystems.add(basePhaseSystem);
             CFWConstants.CustomSystems.registerSystem(systemPath.getName(), basePhaseSystem);
         }
-
         sComponentInjector = Dagger_CardgameFramework$CardgameFrameworkComponent
                 .builder()
                 .gameSystemModule(new GameSystemModule(victoryChecker, eventCommander))

@@ -17,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = BiggerThanCondition.class, name = BiggerThanCondition.CONDITION_NAME),
         @JsonSubTypes.Type(value = InputKeyCondition.class, name = InputKeyCondition.CONDITION_NAME),
         @JsonSubTypes.Type(value = LowerThanCondition.class, name = LowerThanCondition.CONDITION_NAME),
+        @JsonSubTypes.Type(value = EqualsCondition.class, name = EqualsCondition.CONDITION_NAME),
+        @JsonSubTypes.Type(value = NotEqualsCondition.class, name = NotEqualsCondition.CONDITION_NAME),
         @JsonSubTypes.Type(value = ScriptCondition.class, name = ScriptCondition.CONDITION_NAME)
 })
 public interface ICFWCondition {

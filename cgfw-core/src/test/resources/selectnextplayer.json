@@ -6,6 +6,19 @@
     {
       "condition": [
         {
+          "type": "not_equal",
+          "left": {
+            "type": "player_attribute",
+            "target": "selected_player",
+            "value": "player_position"
+          },
+          "right": {
+            "type": "player_attribute",
+            "target": "current_player",
+            "value": "player_position"
+          }
+        },
+        {
           "type": "lower_than",
           "left": {
             "type": "player_attribute",

@@ -15,8 +15,8 @@ import javax.annotation.Generated;
         "type", "left", "right"
 })
 @ToString
-public class EqualsCondition extends CFWCondition {
-    public static final String CONDITION_NAME = "equals";
+public class NotEqualsCondition extends CFWCondition {
+    public static final String CONDITION_NAME = "not_equals";
 
     @JsonProperty("left")
     private ICFWValue left;
@@ -61,6 +61,6 @@ public class EqualsCondition extends CFWCondition {
         if (left == null || right == null) {
             return false;
         }
-        return left.getValue() == right.getValue();
+        return left.getValue() != right.getValue();
     }
 }
