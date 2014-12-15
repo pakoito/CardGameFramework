@@ -16,7 +16,7 @@ import javax.annotation.Generated;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-        "target", "condition"
+        "target"
 })
 @ToString
 public class SetActiveAction extends CFWAction {
@@ -29,6 +29,9 @@ public class SetActiveAction extends CFWAction {
 
     @Override
     public void doAction(boolean passesConditions) {
+        if (!passesConditions){
+            return;
+        }
         World world = WorldFetcher.fetchWorld();
         TagManager tagManager = world.getManager(TagManager.class);
         oldWinner = tagManager.getEntity(CFWConstants.PlayerGroups.SELECTED_PLAYER);
