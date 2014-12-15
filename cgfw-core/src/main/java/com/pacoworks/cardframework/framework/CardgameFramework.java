@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.artemis.Entity;
 import com.artemis.EntitySystem;
 import com.artemis.World;
-import com.pacoworks.cardframework.api.constants.CFWConstants;
+import com.pacoworks.cardframework.api.CFWConstants;
 import com.pacoworks.cardframework.api.factories.system.SystemFactory;
 import com.pacoworks.cardframework.api.model.CFWSystem;
 import com.pacoworks.cardframework.api.model.components.CFWComponent;

@@ -47,7 +47,7 @@ public class PlayerHandCount extends CFWComponent {
     }
 
     @Override
-    public Float getValue() {
+    public Float getValue(String attribute) {
         return (float) getCount();
     }
 }

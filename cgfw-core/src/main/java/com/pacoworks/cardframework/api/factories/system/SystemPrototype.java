@@ -5,7 +5,7 @@ import com.artemis.Aspect;
 import com.artemis.Entity;
 import com.artemis.annotations.Wire;
 import com.artemis.managers.TagManager;
-import com.pacoworks.cardframework.api.constants.CFWConstants;
+import com.pacoworks.cardframework.api.CFWConstants;
 import com.pacoworks.cardframework.api.model.CFWState;
 import com.pacoworks.cardframework.api.model.CFWSystem;
 import com.pacoworks.cardframework.api.model.actions.ICFWAction;

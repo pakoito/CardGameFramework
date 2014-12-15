@@ -7,9 +7,10 @@ import com.artemis.managers.TagManager;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pacoworks.cardframework.api.constants.CFWConstants;
+import com.pacoworks.cardframework.api.CFWConstants;
 import com.pacoworks.cardframework.api.model.components.CFWComponent;
 import com.pacoworks.cardframework.api.util.WorldFetcher;
+import com.pacoworks.cardframework.components.UnpackedComponent;
 import lombok.ToString;
 
 import javax.annotation.Generated;
@@ -68,8 +69,11 @@ public class PlayerAttributeValue extends CFWValue {
         Float value = 0f;
         if (entity != null){
             Class<? extends CFWComponent> componentClass = CFWConstants.CustomComponents.getComponentClass(attribute);
+            if (componentClass == null){
+                componentClass = UnpackedComponent.class;
+            }
             CFWComponent valueHolder = world.getMapper(componentClass).getSafe(entity);
-            value = valueHolder.getValue();
+            value = valueHolder.getValue(attribute);
         }
         return value;
     }

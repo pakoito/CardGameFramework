@@ -1,5 +1,5 @@
 
-package com.pacoworks.cardframework.api.constants;
+package com.pacoworks.cardframework.api;
 
 import com.pacoworks.cardframework.api.model.components.CFWComponent;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;

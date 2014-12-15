@@ -7,7 +7,7 @@ import com.artemis.managers.TagManager;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pacoworks.cardframework.api.constants.CFWConstants;
+import com.pacoworks.cardframework.api.CFWConstants;
 import com.pacoworks.cardframework.api.util.WorldFetcher;
 import lombok.ToString;
 

@@ -1,9 +1,10 @@
 import com.artemis.utils.EntityBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pacoworks.cardframework.api.constants.CFWConstants;
+import com.pacoworks.cardframework.api.CFWConstants;
 import com.pacoworks.cardframework.api.model.CFWSystem;
 import com.pacoworks.cardframework.api.model.components.CFWComponent;
 import com.pacoworks.cardframework.components.Player;
+import com.pacoworks.cardframework.components.UnpackedComponent;
 import com.pacoworks.cardframework.eventbus.IEventCommander;
 import com.pacoworks.cardframework.eventbus.events.BaseEvent;
 import com.pacoworks.cardframework.framework.CardgameFramework;
@@ -39,9 +40,9 @@ public class SystemTest {
                         }
                     }).build();
             new EntityBuilder(framework.getWorld()).tag("player1").group("1")
-                    .with(new PlayerPosition(0), new PlayerHandCount(), new Player()).build();
+                    .with(new PlayerPosition(0), new PlayerHandCount(), new Player(), new UnpackedComponent()).build();
             new EntityBuilder(framework.getWorld()).tag("player2").tag(CFWConstants.PlayerGroups.SELECTED_PLAYER).group("2")
-                    .with(new PlayerPosition(1), new PlayerHandCount(), new Player()).build();
+                    .with(new PlayerPosition(1), new PlayerHandCount(), new Player(), new UnpackedComponent()).build();
             CFWConstants.GlobalValues.setValue("player_count", 2f);
             framework.process();
         } catch (IOException e) {

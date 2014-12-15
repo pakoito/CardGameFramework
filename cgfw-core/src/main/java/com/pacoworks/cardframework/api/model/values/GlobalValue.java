@@ -4,7 +4,7 @@ package com.pacoworks.cardframework.api.model.values;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pacoworks.cardframework.api.constants.CFWConstants;
+import com.pacoworks.cardframework.api.CFWConstants;
 import lombok.ToString;
 
 import javax.annotation.Generated;

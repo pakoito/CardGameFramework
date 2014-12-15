@@ -13,7 +13,7 @@ public class PlayerPosition extends CFWComponent {
     }
 
     @Override
-    public Float getValue() {
+    public Float getValue(String attribute) {
         return (float)position;
     }
 }

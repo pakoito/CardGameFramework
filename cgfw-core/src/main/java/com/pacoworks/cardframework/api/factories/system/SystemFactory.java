@@ -3,9 +3,10 @@ package com.pacoworks.cardframework.api.factories.system;
 
 import com.artemis.Aspect;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pacoworks.cardframework.api.constants.CFWConstants;
+import com.pacoworks.cardframework.api.CFWConstants;
 import com.pacoworks.cardframework.api.model.CFWSystem;
 import com.pacoworks.cardframework.components.Player;
+import com.pacoworks.cardframework.components.UnpackedComponent;
 import com.pacoworks.cardframework.systems.BasePhaseSystem;
 import lombok.NonNull;
 
@@ -40,10 +41,10 @@ public class SystemFactory {
 
     private static Aspect getAspectForString(@NonNull String targetEntities){
         if (CFWConstants.PlayerGroups.ALL_PLAYERS.equals(targetEntities)){
-            return Aspect.getAspectForAll(Player.class);
+            return Aspect.getAspectForAll(Player.class, UnpackedComponent.class);
         }
         if (CFWConstants.PlayerGroups.SELECTED_PLAYER.equals(targetEntities)){
-            return Aspect.getAspectForAll(Player.class);
+            return Aspect.getAspectForAll(Player.class, UnpackedComponent.class);
         }
         return Aspect.getEmpty();
     }
