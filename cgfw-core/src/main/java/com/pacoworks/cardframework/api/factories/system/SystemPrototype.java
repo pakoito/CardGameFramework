@@ -28,6 +28,8 @@ public class SystemPrototype extends BasePhaseSystem {
 
     private Entity selectedPlayer;
 
+    private boolean isContinue;
+
     public void setCFWSystem(CFWSystem CFWSystem) {
         this.systemDef = CFWSystem;
     }
@@ -44,13 +46,15 @@ public class SystemPrototype extends BasePhaseSystem {
     protected void begin() {
         super.begin();
         selectedPlayer = tagManager.getEntity(CFWConstants.PlayerGroups.SELECTED_PLAYER);
+        isContinue = true;
     }
 
     @Override
     protected void process(Entity e) {
         tagManager.register(CFWConstants.PlayerGroups.CURRENT_PLAYER, e);
-        if (CFWConstants.PlayerGroups.SELECTED_PLAYER.equals(systemDef.getTargetEntities())
-                && selectedPlayer != null && selectedPlayer.getUuid() != e.getUuid()) {
+        boolean selectedPlayerOnly = CFWConstants.PlayerGroups.SELECTED_PLAYER.equals(systemDef.getTargetEntities())
+                && selectedPlayer != null && selectedPlayer.getUuid() != e.getUuid();
+        if (!isContinue || selectedPlayerOnly) {
             return;
         }
         for (CFWState state : systemDef.getStates()) {
@@ -77,8 +81,15 @@ public class SystemPrototype extends BasePhaseSystem {
             }
             basePhaseSystems = sanitizedSystemList.toArray(new BasePhaseSystem[sanitizedSystemList
                     .size()]);
+            isContinue = state.isContinue();
             break;
         }
+    }
+
+    @Override
+    protected void end() {
+        super.end();
+        tagManager.register(CFWConstants.PlayerGroups.CURRENT_PLAYER, null);
     }
 
     @Override

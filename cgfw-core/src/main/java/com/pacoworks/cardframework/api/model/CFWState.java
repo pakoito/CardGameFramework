@@ -15,7 +15,7 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-        "condition", "action", "next", "priority"
+        "condition", "action", "next", "priority", "continue"
 })
 @ToString
 public class CFWState {
@@ -30,6 +30,9 @@ public class CFWState {
 
     @JsonProperty("priority")
     private Integer priority;
+
+    @JsonProperty("continue")
+    private Boolean isContinue = true;
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -96,6 +99,22 @@ public class CFWState {
     @JsonProperty("priority")
     public void setPriority(Integer priority) {
         this.priority = priority;
+    }
+
+    /**
+     * @return The continuity
+     */
+    @JsonProperty("continue")
+    public Boolean isContinue() {
+        return isContinue;
+    }
+
+    /**
+     * @param continueAfter The continuity
+     */
+    @JsonProperty("continue")
+    public void setContinue(Boolean continueAfter) {
+        this.isContinue = continueAfter;
     }
 
     @JsonAnyGetter
