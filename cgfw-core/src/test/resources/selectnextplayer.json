@@ -6,7 +6,7 @@
     {
       "condition": [
         {
-          "type": "not_equal",
+          "type": "not_equals",
           "left": {
             "type": "player_attribute",
             "target": "selected_player",
