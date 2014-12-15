@@ -1,0 +1,32 @@
+{
+  "type": "system",
+  "name": "countcheck",
+  "target_entities": "selected_player",
+  "fsm": [
+    {
+      "condition": [
+        {
+          "type": "bigger_than",
+          "left": {
+            "type": "player_attribute",
+            "target": "selected_player",
+            "attribute": "player_hand_count"
+          },
+          "right": {
+            "type": "numerical",
+            "value": 21
+          }
+        }
+      ],
+      "next": "selectnextplayer",
+      "priority": 0
+    },
+    {
+      "event": {
+        "target": "player"
+      },
+      "next": ["playerchoice"],
+      "priority": 1
+    }
+  ]
+}

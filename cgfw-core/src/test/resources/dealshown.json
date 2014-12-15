@@ -1,0 +1,21 @@
+{
+  "type": "system",
+  "name": "dealshown",
+  "target_entities": "selected_player",
+  "fsm": [
+    {
+      "action": [
+        {
+          "type": "draw",
+          "target": "selected_player",
+          "amount": {
+            "type": "numerical",
+            "value": 1
+          }
+        }
+      ],
+      "next": ["countcheck"],
+      "priority": 0
+    }
+  ]
+}

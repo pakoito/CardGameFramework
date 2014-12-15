@@ -1,0 +1,21 @@
+{
+  "type": "system",
+  "name": "dealhidden",
+  "target_entities": "selected_player",
+  "fsm": [
+    {
+      "action": [
+        {
+          "target": "selected_player",
+          "type": "draw_hidden",
+          "amount": {
+            "type": "numerical",
+            "value": 1
+          }
+        }
+      ],
+      "next": ["countcheck"],
+      "priority": 0
+    }
+  ]
+}

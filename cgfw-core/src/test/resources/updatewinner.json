@@ -1,0 +1,44 @@
+{
+  "type": "system",
+  "name": "updatewinner",
+  "target_entities": "selected_player",
+  "fsm": [
+    {
+      "action": [
+        {
+          "type": "set_winner",
+          "target": "selected_player",
+          "condition": [
+            {
+              "type": "between",
+              "value": {
+                "type": "player_attribute",
+                "target": "selected_player",
+                "value": "player_hand_count"
+              },
+              "ceil_ex": [
+                {
+                  "type": "numerical",
+                  "value": 22
+                }
+              ],
+              "floor_ex": [
+                {
+                  "type": "numerical",
+                  "value": -1
+                },
+                {
+                  "type": "player_attribute",
+                  "target": "winner_player",
+                  "value": "player_hand_count"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "next": ["selectnextplayer"],
+      "priority": 0
+    }
+  ]
+}

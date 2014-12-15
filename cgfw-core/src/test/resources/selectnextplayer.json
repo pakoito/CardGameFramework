@@ -1,0 +1,40 @@
+{
+  "type": "system",
+  "name": "selectnextplayer",
+  "target_entities": "all_players",
+  "fsm": [
+    {
+      "condition": [
+        {
+          "type": "lower_than",
+          "left": {
+            "type": "player_attribute",
+            "target": "selected_player",
+            "value": "player_position"
+          },
+          "right": {
+            "type": "global",
+            "name": "player_count"
+          }
+        }
+      ],
+      "action": [
+        {
+          "type": "set_active",
+          "target": "current_player"
+        }
+      ],
+      "next": ["dealhidden"],
+      "priority": 0
+    },
+    {
+      "action": [
+        {
+          "type": "declare_winner"
+        }
+      ],
+      "next": ["cleanupsystem"],
+      "priority": 1
+    }
+  ]
+}

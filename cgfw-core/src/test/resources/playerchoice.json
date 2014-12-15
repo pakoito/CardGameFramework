@@ -1,0 +1,58 @@
+{
+  "type": "system",
+  "name": "playerchoice",
+  "target_entities": "selected_player",
+  "fsm": [
+    {
+      "condition": [
+        {
+          "type": "input_key",
+          "value": "R"
+        }
+      ],
+      "next": ["updatewinner"],
+      "priority": 2
+    },
+    {
+      "condition": [
+        {
+          "type": "input_key",
+          "value": "D"
+        }
+      ],
+      "next": ["dealshown"],
+      "priority": 1
+    },
+    {
+      "condition": [
+        {
+          "type": "input_key",
+          "value": "S"
+        }
+      ],
+      "next": ["dealhidden"],
+      "priority": 0
+    },
+    {
+      "action": [
+        {
+          "type": "print",
+          "message": "Current card count: ",
+          "elements": [
+            {
+              "type": "player_attribute",
+              "target": "current_player",
+              "value": "player_hand_count"
+            }
+          ]
+        },
+        {
+          "type": "print",
+          "message": "REVEAL CARD DRAW HIDDEN: S\tHIDE CARD DRAW OPENLY: D\tCHECK: R"
+        }
+      ],
+      "next": ["playerchoice"],
+      "priority": 3
+    }
+  ]
+}
