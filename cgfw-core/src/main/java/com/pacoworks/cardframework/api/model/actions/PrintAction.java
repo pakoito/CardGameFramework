@@ -61,6 +61,9 @@ public class PrintAction extends CFWAction {
 
     @Override
     public void doAction(boolean passesConditions) {
+        if (!passesConditions){
+            return;
+        }
         StringBuilder stringBuilder = new StringBuilder(message);
         if (elements.size() > 0) {
             for (int i = 0; i < elements.size(); i++) {

@@ -58,7 +58,9 @@ public class DrawHiddenAction extends CFWAction {
 
     @Override
     public void doAction(boolean passesConditions) {
-
+        if (!passesConditions){
+            return;
+        }
     }
 
     @Override

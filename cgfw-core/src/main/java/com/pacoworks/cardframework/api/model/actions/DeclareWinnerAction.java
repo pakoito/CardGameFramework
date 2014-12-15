@@ -14,15 +14,16 @@ import javax.annotation.Generated;
 })
 @ToString
 public class DeclareWinnerAction extends CFWAction {
-        public static final String ACTION_NAME = "declare_winner";
+    public static final String ACTION_NAME = "declare_winner";
 
-        @Override
-        public void doAction(boolean passesConditions) {
-
+    @Override
+    public void doAction(boolean passesConditions) {
+        if (!passesConditions) {
+            return;
         }
+    }
 
-        @Override
-        public void undoAction() {
-
-        }
+    @Override
+    public void undoAction() {
+    }
 }

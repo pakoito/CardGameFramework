@@ -29,6 +29,9 @@ public class SetWinnerAction extends CFWAction {
 
     @Override
     public void doAction(boolean passesConditions) {
+        if (!passesConditions){
+            return;
+        }
         World world = WorldFetcher.fetchWorld();
         TagManager tagManager = world.getManager(TagManager.class);
         oldWinner = tagManager.getEntity(CFWConstants.PlayerGroups.WINNER_PLAYER);
