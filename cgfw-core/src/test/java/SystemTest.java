@@ -39,9 +39,9 @@ public class SystemTest {
                         public void postAnyEvent(BaseEvent event) {
                         }
                     }).build();
-            new EntityBuilder(framework.getWorld()).tag("player1").group("1")
+            new EntityBuilder(framework.getWorld()).tag("player1").group("1").tag(CFWConstants.PlayerGroups.SELECTED_PLAYER)
                     .with(new PlayerPosition(0), new PlayerHandCount(), new Player(), new UnpackedComponent()).build();
-            new EntityBuilder(framework.getWorld()).tag("player2").tag(CFWConstants.PlayerGroups.SELECTED_PLAYER).group("2")
+            new EntityBuilder(framework.getWorld()).tag("player2").group("2")
                     .with(new PlayerPosition(1), new PlayerHandCount(), new Player(), new UnpackedComponent()).build();
             CFWConstants.GlobalValues.setValue("player_count", 2f);
             framework.process();

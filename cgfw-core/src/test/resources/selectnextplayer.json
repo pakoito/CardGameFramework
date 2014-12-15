@@ -33,6 +33,17 @@
       ],
       "action": [
         {
+          "type": "print",
+          "message": "Start of turn for player: ",
+          "elements": [
+            {
+              "type": "player_attribute",
+              "target": "current_player",
+              "value": "player_position"
+            }
+          ]
+        },
+        {
           "type": "set_active",
           "target": "current_player"
         }
